@@ -56,9 +56,10 @@ I organized the project into seven phases to ensure data integrity and system sc
 
 I used these SQL scripts at each stage to verify data quality:
 
-* `01_bronze_ingestion_verification.sql`: `COUNT(*)` checks to ensure row fidelity.
-* `02_silver_typecast_audit.sql`: Validates successful type-conversion for analytical fields.
-* `03_gold_cartesian_reconciliation.sql`: Cross-references aggregate revenue against line items to prevent metric inflation.
+* `01_create_bronze_tables.sql`: Data ingestion from csv files to postgresql tables in the bronze layer.
+* `02_validate_bronze_data.sql`: `COUNT(*)` checks to ensure row fidelity.
+* `03_silver_typecast_audit.sql`: Validates successful type-conversion for analytical fields.
+* `04_gold_cartesian_reconciliation.sql`: Cross-references aggregate revenue against line items to prevent metric inflation.
 
 ---
 
