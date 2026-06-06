@@ -1,0 +1,94 @@
+# ==========================================
+# Credentials, Secrets, and Security
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.crt
+*.key
+secrets.json
+
+# ==========================================
+# OS Generated Files
+# ==========================================
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+
+# ==========================================
+# Data Files and Storage (Never commit heavy datasets)
+# ==========================================
+# Common data Formats
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.xlsm
+*.parquet
+*.jsonl
+*.feather
+*.avro
+*.orc
+
+# Database dumps and local storage
+*.sqlite
+*.sqlite3
+*.db
+*.mdb
+*.accdb
+backups/
+
+# Local configuration
+config/database.conf
+
+# Large / Compressed Archives
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.gz
+
+# ==========================================
+# Virtual Environments and Packages
+# ==========================================
+# Python
+venv/
+.venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+
+# R packages
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# ==========================================
+# Notebooks, Models, and Large Outputs
+# ==========================================
+# Heavy Machine Learning models
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+*.keras
+*.onnx
+*.pb
+*.pt
+*.pth
+*.ckpt
+
+# Execution history & temporary files
+.dvc/cache/
+.dvc/tmp/
+mlruns/
+lightning_logs/
+wandb/
