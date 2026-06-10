@@ -1,17 +1,38 @@
-## 2026-06-08
+### Data Ingestion – Bronze Layer (Olist Dataset)
 
-### Challenge
+**Status:** Resolved
+**Category:** Data Engineering | ETL | Troubleshooting
 
-Missing delivery dates in orders table.
+#### Challenge 1: Customer Data Import Stalling
 
-### Investigation
+**Problem**
+Customer data ingestion repeatedly stalled at approximately 70,000 records during bulk loading.
 
-Found cancelled orders have no delivery date.
+**Resolution**
 
-### Decision
+* Reduced batch commit size to improve transaction stability.
+* Validated destination schema and column constraints.
+* Used **Truncate before load** to eliminate potential key conflicts.
+* Verified record counts and reviewed load logs after ingestion.
 
-Keep records and flag them instead of deleting.
+**Outcome**
+Successfully loaded the complete customer dataset and validated all records.
 
-### Reason
+---
 
-Deleting would distort cancellation metrics.
+#### Challenge 2: Parsing Unstructured Order Reviews Data
+
+**Problem**
+Review data import failed due to Portuguese text fields containing backslashes (`\`), escaped quotes, blank values, and multi-line comments, resulting in parser validation errors, column misalignment, and DBeaver NPE crashes.
+
+**Resolution**
+
+* Changed `review_comment_title` and `review_comment_message` from `VARCHAR` to `TEXT`.
+* Disabled **Set empty strings to NULL** to prevent parser crashes.
+* Enabled **Trim whitespace** during ingestion.
+* Configured custom quote and escape characters to preserve literal backslashes and correctly parse quoted text.
+
+**Outcome**
+Successfully ingested review data while preserving original text content and structure.
+
+---
