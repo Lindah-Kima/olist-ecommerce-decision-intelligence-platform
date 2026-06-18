@@ -1,4 +1,4 @@
-# Data Dictionary: Olist E-Commerce Analytics Platform
+# Data Dictionary: Olist E-Commerce Decision Intelligence Platform
 
 This document outlines the schema, relationships, and business context of the Olist Brazilian E-Commerce dataset. The data represents ~100,000 anonymized orders placed between 2016 and 2018.  Table definitions below describe the **Silver Layer** (cleaned/normalized) schema, including primary/foreign keys and expected data types after casting from the raw CSVs.
 
