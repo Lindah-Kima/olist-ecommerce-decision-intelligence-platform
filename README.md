@@ -3,7 +3,7 @@
 
 This project implements a full stack data system lifecycle using the Olist e-commerce dataset. It moves data from raw ingestion to a structured Gold-layer star schema, culminating in a predictive model and an automated intervention service.
 
-[Portfolio](https://www.datascienceportfol.io/lindahkima2) | [LinkedIn](https://www.linkedin.com/in/lindah-kima/) | [Medium](https://github.com/Lindah-Kima)
+[Portfolio](https://www.datascienceportfol.io/lindahkima2) | [LinkedIn](https://www.linkedin.com/in/lindah-kima/) | [Medium](https://github.com/Lindah-Kima) | [Credly](https://www.credly.com/users/lindah-kima)
 
 ---
 
