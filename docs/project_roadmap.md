@@ -1,139 +1,128 @@
-# Olist Ecommerce Decision Intelligence Platform
+# Olist Decision Intelligence Platform Roadmap
 
-## Project Overview
+## Project Vision
 
-The Olist Ecommerce Decision Intelligence Platform is an end-to-end data project that transforms raw Olist e-commerce data into analytics, predictions, recommendations, and business actions.
-
-The project demonstrates the complete data lifecycle across Data Engineering, Analytics, Data Science, Machine Learning, API Development, Deployment, and AI-assisted decision support.
+Build a production-inspired Decision Intelligence Platform that transforms raw e-commerce data into trusted analytics, predictive insights, and business recommendations through an integrated Data Engineering, Analytics, Machine Learning, and AI stack.
 
 ---
 
-## Current Status
+# Current Status
 
-Current Phase: Phase 1 — Data Engineering Platform
+| Area                  | Status         |
+| --------------------- | -------------- |
+| Repository Foundation | Completed    |
+| Bronze Layer          | Completed    |
+| Silver Layer          | Completed |
+| Gold Layer            | Completed |
+| Power BI              | In Progress      |
+| Machine Learning      | Planned      |
+| API Development       | Planned      |
+| Docker Deployment     | Planned      |
+| AI Decision Support   | Planned      |
 
-### Current Focus
+**Current Phase:** Data Engineering Platform
 
-- Complete Bronze Layer
-- Build Silver Layer
-- Build Gold Layer
-- Create Power BI Data Model
+**Current Focus**
 
-### Next Milestone
-
-Bronze Layer Completed
+* Complete Silver Layer
+* Complete Gold Layer
+* Validate analytical model
+* Build Power BI semantic model
 
 ---
 
 # Business Problem
 
-E-commerce organizations need to answer five critical questions:
+Modern e-commerce organizations need to answer five critical business questions:
 
 1. What happened?
 2. Why did it happen?
 3. What is likely to happen next?
 4. What action should be taken?
-5. How can decision-making be partially automated?
+5. How can decisions be partially automated?
 
-This platform is designed to answer all five.
+This platform is designed to answer all five questions within a single integrated system.
 
 ---
 
-# Project Objectives
+# Strategic Objectives
 
 ## Data Engineering
 
-* Build a PostgreSQL-based analytical platform
-* Implement Medallion Architecture (Bronze, Silver, Gold)
-* Apply data quality and validation processes
+* Build a trusted analytical warehouse using PostgreSQL.
+* Implement Medallion Architecture (Bronze, Silver, Gold).
+* Establish data quality, governance, and validation processes.
 
 ## Analytics
 
-* Develop executive Power BI dashboards
-* Create business KPIs and performance metrics
-* Deliver actionable business insights
+* Deliver executive and operational dashboards.
+* Create standardized business metrics and KPIs.
+* Generate actionable business insights.
 
 ## Data Science
 
-* Perform exploratory and diagnostic analysis
-* Conduct statistical testing
-* Build predictive machine learning models
+* Perform exploratory, diagnostic, and statistical analysis.
+* Build predictive machine learning models.
+* Implement model explainability.
 
 ## Software Engineering
 
-* Develop REST APIs using FastAPI
-* Apply Git workflow and project organization standards
+* Develop REST APIs using FastAPI.
+* Apply modular project architecture and Git workflows.
 
 ## Deployment
 
-* Containerize applications using Docker
-* Deploy production-style services
+* Containerize applications using Docker.
+* Deploy production-style services.
 
 ## AI
 
-* Implement AI-assisted business decision support
+* Implement lightweight AI-assisted decision support.
 
 ---
 
 # Technology Stack
 
-| Area | Tools |
-|--------|--------|
-| Cloud Database | Aiven PostgreSQL |
-| Database Management | DBeaver |
-| Data Processing | Python, SQL, Pandas |
-| Analytics | Power BI, DAX |
-| Machine Learning | Scikit-learn, SHAP |
-| API Development | FastAPI |
-| Containerization | Docker |
-| Version Control | Git, GitHub |
-| Development Environment | VS Code |
+| Domain                  | Technologies                |
+| ----------------------- | --------------------------- |
+| Cloud Database          | Aiven PostgreSQL            |
+| Database Administration | DBeaver                     |
+| Data Processing         | SQL, Python, Pandas         |
+| Analytics               | Power BI, DAX               |
+| Machine Learning        | Scikit-learn, XGBoost, SHAP |
+| API Development         | FastAPI                     |
+| Deployment              | Docker                      |
+| AI                      | Gemini API                  |
+| Version Control         | Git, GitHub                 |
+| Development Environment | VS Code                     |
 
 ---
 
-# Project Architecture
+# High-Level Architecture
 
+```text
 Raw Data
-
-↓
-
+   ↓
 Bronze Layer
-
-↓
-
+   ↓
 Silver Layer
-
-↓
-
+   ↓
 Gold Layer
-
-↓
-
+   ↓
 Business Intelligence
-
-↓
-
+   ↓
+Analytics & Experimentation
+   ↓
 Machine Learning
-
-↓
-
+   ↓
 Decision Engine
-
-↓
-
+   ↓
 FastAPI
-
-↓
-
-Docker
-
-↓
-
-Deployment
-
-↓
-
+   ↓
+Docker Deployment
+   ↓
 AI Decision Support
+```
 
 ---
 
@@ -141,17 +130,24 @@ AI Decision Support
 
 ## Goal
 
-Establish professional project standards before development begins.
+Establish professional engineering standards before development begins.
 
 ### Deliverables
 
 * Repository structure
-* Git workflow
-* Feature branch strategy
+* Modular project architecture
+* Git branching strategy
 * Data dictionary
 * Project journal
 * Architecture documentation
+* Coding standards
 * Acceptance criteria
+
+### Success Criteria
+
+* Repository structure finalized.
+* Documentation standards established.
+* Development workflow documented.
 
 ---
 
@@ -159,60 +155,122 @@ Establish professional project standards before development begins.
 
 ## Goal
 
-Build a trusted analytical data warehouse.
+Build a trusted analytical warehouse using Medallion Architecture.
 
-### Bronze Layer
+---
+
+## Bronze Layer
+
+### Objective
 
 Store source data exactly as received.
 
-#### Deliverables
+### Deliverables
 
-* Bronze schema
+* Bronze schema creation
 * Raw data ingestion pipelines
 * Row count validation
 * Backup procedures
+* Source audit checks
 
-### Silver Layer
+### Success Criteria
 
-Create clean and validated business data.
+* All datasets loaded successfully.
+* Row counts match source files.
+* No source data loss detected.
 
-#### Deliverables
+---
 
-* Data quality checks
+## Silver Layer
+
+### Objective
+
+Create clean, validated, analytics-ready datasets.
+
+### Deliverables
+
+* Data type standardization
 * Missing value handling
-* Duplicate validation
+* Duplicate removal
 * Business rule validation
-* Derived metrics
+* Derived feature generation
 
-Example metrics:
+### Example Features
 
-* delivery_days
-* delay_days
-* processing_days
+* `delivery_days`
+* `delay_days`
+* `processing_days`
 
-### Gold Layer
+### Data Quality Controls
 
-Create business-ready analytical datasets.
+* Referential integrity validation
+* Duplicate detection
+* Logical date validation
+* Financial integrity checks
+* Completeness checks
 
-#### Deliverables
+### Success Criteria
 
-##### Fact Tables
+* Data quality checks pass.
+* Business rules validated.
+* Analytical fields generated successfully.
 
-* fact_orders
+---
 
-##### Dimension Tables
+## Gold Layer
 
-* dim_customers
-* dim_products
-* dim_sellers
-* dim_dates
-* dim_geography
+### Objective
 
-##### Metrics Tables
+Create business-ready analytical datasets optimized for reporting and machine learning.
 
-* customer_metrics
-* seller_metrics
-* delivery_metrics
+### Deliverables
+
+#### Dimension Tables
+
+* `dim_customers`
+* `dim_products`
+* `dim_sellers`
+* `dim_date`
+
+#### Fact Tables
+
+* `fact_order_items`
+* `fact_order_payments`
+
+#### Aggregated Metrics
+
+* Customer metrics
+* Seller metrics
+* Delivery metrics
+
+### Success Criteria
+
+* Star schema validated.
+* No metric inflation detected.
+* Power BI model consumes Gold tables successfully.
+
+---
+
+# Phase 1.5: Data Governance & Warehouse Quality
+
+## Goal
+
+Ensure warehouse trust, consistency, and reproducibility.
+
+### Deliverables
+
+* Data dictionary
+* Business glossary
+* Source-to-target mapping
+* Metric definitions document
+* Data quality audit scripts
+* Referential integrity documentation
+
+### Success Criteria
+
+* All business metrics documented.
+* Quality tests pass successfully.
+* Warehouse lineage documented.
 
 ---
 
@@ -220,9 +278,11 @@ Create business-ready analytical datasets.
 
 ## Goal
 
-Deliver executive-level reporting and monitoring.
+Deliver executive-level reporting and operational monitoring.
 
-### Executive Performance Dashboard
+### Dashboards
+
+#### Executive Dashboard
 
 Focus Areas:
 
@@ -232,29 +292,35 @@ Focus Areas:
 * Average Order Value
 * Growth Trends
 
-### Logistics Dashboard
+#### Logistics Dashboard
 
 Focus Areas:
 
-* Delivery Performance
-* Delay Trends
-* Seller Logistics Performance
+* Delivery performance
+* Delay trends
+* Seller logistics performance
 
-### Customer Experience Dashboard
-
-Focus Areas:
-
-* Review Scores
-* Customer Satisfaction
-* Repeat Purchase Behaviour
-
-### Seller Performance Dashboard
+#### Customer Experience Dashboard
 
 Focus Areas:
 
-* Seller Revenue
-* Fulfillment Performance
-* Operational Risk
+* Review scores
+* Customer satisfaction
+* Repeat purchase behavior
+
+#### Seller Performance Dashboard
+
+Focus Areas:
+
+* Seller revenue
+* Fulfillment performance
+* Operational risk
+
+### Success Criteria
+
+* Dashboards validated.
+* KPIs documented.
+* Business questions answered.
 
 ---
 
@@ -264,7 +330,7 @@ Focus Areas:
 
 Identify drivers of business performance and customer experience.
 
-### Exploratory Data Analysis
+### Exploratory Analysis
 
 Investigate:
 
@@ -273,25 +339,30 @@ Investigate:
 * Freight costs
 * Product categories
 * Seller performance
-* Geographic patterns
+* Geographic trends
 
 ### Statistical Analysis
 
 #### T-Test
 
-Delivery delays vs customer satisfaction
+Delivery delays vs customer satisfaction.
 
 #### ANOVA
 
-Product categories vs customer satisfaction
+Product categories vs customer satisfaction.
 
 #### Correlation Analysis
 
-Freight costs vs customer satisfaction
+Freight costs vs customer satisfaction.
 
 ### Deliverable
 
-Customer Friction Report
+**Customer Friction Report**
+
+### Success Criteria
+
+* Statistical findings documented.
+* Key business drivers identified.
 
 ---
 
@@ -301,39 +372,49 @@ Customer Friction Report
 
 Predict operational and customer risks.
 
-### Model 1 — Delivery Delay Prediction
+---
 
-Business Question:
+## Model 1: Delivery Delay Prediction
+
+### Business Question
 
 Which orders are likely to be delayed?
 
-#### Algorithms
+### Algorithms
 
 * Logistic Regression
 * Random Forest
-* XGBoost (Optional)
+* XGBoost
 
-#### Evaluation Metrics
+### Evaluation Metrics
 
-* Recall
 * Precision
+* Recall
 * ROC-AUC
 
-#### Explainability
+### Explainability
 
 * SHAP
 
-### Model 2: Customer Risk Scoring
+---
 
-Business Question:
+## Model 2: Customer Risk Scoring
+
+### Business Question
 
 Which customers are at risk of dissatisfaction?
 
-#### Outputs
+### Outputs
 
 * Low Risk
 * Medium Risk
 * High Risk
+
+### Success Criteria
+
+* Models evaluated and documented.
+* Explainability implemented.
+* Business utility demonstrated.
 
 ---
 
@@ -347,9 +428,14 @@ Convert predictions into recommended business actions.
 
 | Scenario                       | Recommended Action    |
 | ------------------------------ | --------------------- |
-| High Value + High Delay Risk   | Voucher               |
+| High Value + High Delay Risk   | Retention Voucher     |
 | Low Value + High Delay Risk    | Apology Communication |
 | High Satisfaction + High Spend | Loyalty Campaign      |
+
+### Success Criteria
+
+* Rules documented.
+* Recommendation logic validated.
 
 ---
 
@@ -357,20 +443,25 @@ Convert predictions into recommended business actions.
 
 ## Goal
 
-Expose predictions and recommendations through APIs.
+Expose predictions and recommendations through REST APIs.
 
 ### Endpoints
 
-* POST /predict-delay
-* POST /customer-risk
-* POST /recommend-action
+* `POST /predict-delay`
+* `POST /customer-risk`
+* `POST /recommend-action`
 
 ### Deliverables
 
 * FastAPI application
 * Swagger documentation
-* Input validation
+* Request validation
 * Error handling
+
+### Success Criteria
+
+* APIs tested successfully.
+* Endpoints documented.
 
 ---
 
@@ -378,14 +469,19 @@ Expose predictions and recommendations through APIs.
 
 ## Goal
 
-Make the platform publicly accessible.
+Package and deploy production-style services.
 
 ### Deliverables
 
 * Dockerized application
 * Environment configuration
 * Hosted API
-* Public GitHub repository
+* Deployment documentation
+
+### Success Criteria
+
+* Application deployed successfully.
+* Environment reproducibility confirmed.
 
 ---
 
@@ -393,19 +489,24 @@ Make the platform publicly accessible.
 
 ## Goal
 
-Provide AI-assisted business recommendations.
+Enhance decision-making using lightweight AI assistance.
 
 ### Operations Agent
 
-Identifies high-risk orders requiring intervention.
+Identifies operational risks requiring intervention.
 
 ### Customer Recovery Agent
 
-Recommends retention strategies.
+Recommends retention actions for at-risk customers.
 
 ### Executive Insights Agent
 
 Summarizes business trends, opportunities, and risks.
+
+### Success Criteria
+
+* AI recommendations generated successfully.
+* Recommendations support business decision-making.
 
 ---
 
@@ -413,34 +514,40 @@ Summarizes business trends, opportunities, and risks.
 
 ## Goal
 
-Create professional project documentation and portfolio assets.
+Produce professional documentation and portfolio assets.
 
 ### Deliverables
 
 * Data Dictionary
-* Project Journal
 * Architecture Diagrams
 * Technical Documentation
 * Model Evaluation Report
 * Executive Summary Report
 * Portfolio Case Study
-* LinkedIn Project Showcase
+* LinkedIn Showcase
+
+### Success Criteria
+
+* Project fully documented.
+* Project reproducible end-to-end.
 
 ---
 
-# Success Criteria
+# Definition of Done
 
-The project is considered successful when:
+The project is considered complete when:
 
-* Medallion Architecture is implemented
-* Executive dashboards are completed
-* Statistical findings are documented
-* Machine learning models are deployed
-* Recommendation engine is operational
-* APIs are publicly accessible
-* Application is containerized
-* Documentation is complete
-* Project is fully reproducible
+* Medallion Architecture is implemented.
+* Gold layer is production-ready.
+* Dashboards answer core business questions.
+* Statistical analyses are documented.
+* Machine learning models are deployed.
+* Recommendation engine is operational.
+* APIs are publicly accessible.
+* Application is containerized.
+* AI-assisted recommendations are functioning.
+* Documentation is complete.
+* The entire platform is reproducible.
 
 ---
 
@@ -452,4 +559,4 @@ The project is considered successful when:
 4. Document important decisions.
 5. Keep solutions simple and maintainable.
 6. Focus on reproducibility and scalability.
-7. Treat the project as a product, not a notebook.
+7. Treat the project as a product, not a collection of notebooks.

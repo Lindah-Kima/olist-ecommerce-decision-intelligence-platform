@@ -1,125 +1,104 @@
 # Data Dictionary: Olist E-Commerce Decision Intelligence Platform
 
-This document outlines the schema, relationships, and business context of the Olist Brazilian E-Commerce dataset. The data represents ~100,000 anonymized orders placed between 2016 and 2018.  Table definitions below describe the **Silver Layer** (cleaned/normalized) schema, including primary/foreign keys and expected data types after casting from the raw CSVs.
+This document outlines the schema, relationships, and business context of the Olist Brazilian E-Commerce dataset. The data represents ~100,000 anonymized orders placed between 2016 and 2018. Table definitions below describe the **Silver Layer** (cleaned/normalized) schema, including expected data types and transformations after casting from the raw Bronze layer.
 
-## 1. Customers (`olist_customers_dataset`)
+## Data Dictionary: Olist Silver Layer
 
-Contains customer location data and unique identity resolution.
+### 1. Customers (`silver.customers`)
 
-| Column Name                 | Silver Data Type | Key Type | Business Description                                                                                  |
-| --------------------------- | ---------------: | :------: | ------------------------------------------------------------------------------------------------------ |
-| `customer_id`               | `VARCHAR`        | **PK**   | Order-scoped customer ID. Each checkout generates a new `customer_id` even if the buyer is the same person. This is the transactional key for the order-to-customer link. |
-| `customer_unique_id`        | `VARCHAR`        |          | Persistent ID for the actual physical customer (anonymized). Used to track repeat buyers across orders.        |
-| `customer_zip_code_prefix`  | `VARCHAR`        | **FK**   | First 5 digits of the customer’s ZIP code (links to `olist_geolocation_dataset`). Identifies delivery region.   |
-| `customer_city`             | `VARCHAR`        |          | Customer’s city name (delivery location).                                                            |
-| `customer_state`            | `VARCHAR`        |          | Customer’s state (two-letter abbreviation).                                                         |
+| Column Name | Data Type | Business Description |
+| --- | --- | --- |
+| `customer_id` | `VARCHAR` | Order-scoped customer ID. Each checkout generates a new ID even if the buyer is the same person. Transactional key for the order link. |
+| `customer_unique_id` | `VARCHAR` | Persistent identifier for the actual physical customer (anonymized). Used to track repeat buyers and calculate Customer Lifetime Value (CLV). |
+| `zip_code` | `VARCHAR` | Trimmed and standardized 5-digit ZIP code prefix identifying the customer's delivery region. |
+| `city` | `VARCHAR` | Standardized and title-cased customer city name. |
+| `state` | `VARCHAR` | Uppercase two-letter state abbreviation. |
 
-## 2. Orders (`olist_orders_dataset`)
+### 2. Orders (`silver.orders`)
 
-The central transactional hub mapping customers to their purchase lifecycle timestamps.
+| Column Name | Data Type | Business Description |
+| --- | --- | --- |
+| `order_id` | `VARCHAR` | Unique identifier for the order. Central transactional hub. |
+| `customer_id` | `VARCHAR` | Foreign key linking to `silver.customers.customer_id`. |
+| `order_status` | `VARCHAR` | Lowercase current state of the order (e.g., `delivered`, `shipped`, `canceled`). |
+| `purchase_ts` | `TIMESTAMP` | Normalized timestamp when the customer completed checkout. |
+| `approved_ts` | `TIMESTAMP` | Normalized timestamp when the order payment was approved. |
+| `carrier_delivered_ts` | `TIMESTAMP` | Timestamp when the package was handed over to the logistics carrier. Critical for isolating carrier transit times. |
+| `delivered_ts` | `TIMESTAMP` | Normalized timestamp when the order was successfully delivered to the customer. |
+| `estimated_delivery_ts` | `TIMESTAMP` | Estimated delivery date provided to the customer at order placement. Serves as the target baseline for SLA compliance and delay modeling. |
+| `is_date_missing_flag` | `BOOLEAN` | Data quality audit flag. Set to `TRUE` if the order status is marked 'delivered' but the `delivered_ts` is missing/null. |
 
-| Column Name                    | Silver Data Type | Key Type | Business Description                                                                             |
-| ------------------------------ | ---------------: | :------: | ------------------------------------------------------------------------------------------------- |
-| `order_id`                     | `VARCHAR`        | **PK**   | Unique identifier for the order.                                                    |
-| `customer_id`                  | `VARCHAR`        | **FK**   | Links to `olist_customers_dataset.customer_id`, identifying who placed the order.    |
-| `order_status`                 | `VARCHAR`        |          | Current status of the order (e.g., `delivered`, `shipped`, `canceled`).             |
-| `order_purchase_timestamp`     | `TIMESTAMP`      |          | Timestamp when the customer completed checkout.                                   |
-| `order_approved_at`            | `TIMESTAMP`      |          | Timestamp when payment for the order was approved.                                 |
-| `order_delivered_carrier_date` | `TIMESTAMP`      |          | When the package was handed to the logistics carrier.                                              |
-| `order_delivered_customer_date`| `TIMESTAMP`      |          | When the order was delivered to the customer.                                                   |
-| `order_estimated_delivery_date`| `TIMESTAMP`      |          | Estimated delivery date provided at order time.                                   |
+### 3. Order Items (`silver.order_items`)
 
-## 3. Order Items (`olist_order_items_dataset`)
+| Column Name | Data Type | Business Description |
+| --- | --- | --- |
+| `order_id` | `VARCHAR` | Foreign key linking to `silver.orders.order_id`. |
+| `order_item_id` | `INT` | Sequential index of the item within a specific order (1, 2, etc.) to identify individual lines in multi-item orders. |
+| `product_id` | `VARCHAR` | Foreign key linking to `silver.products.product_id`. |
+| `seller_id` | `VARCHAR` | Foreign key linking to `silver.sellers.seller_id` (the merchant fulfilling this specific item). |
+| `shipping_limit_ts` | `TIMESTAMP` | Merchant shipping deadline. The date by which the seller must hand the product over to the carrier; used to measure seller fulfillment velocity. |
+| `price` | `NUMERIC(10,2)` | Unit price of the product in Brazilian Real (BRL). |
+| `freight_val` | `NUMERIC(10,2)` | Shipping fee allocated to this specific item line in BRL. |
 
-Line-item details for every product in an order.
+### 4. Order Payments (`silver.order_payments`)
 
-| Column Name           | Silver Data Type | Key Type | Business Description                                                                                  |
-| --------------------- | ---------------: | :------: | ------------------------------------------------------------------------------------------------------ |
-| `order_id`            | `VARCHAR`        | **FK**   | Links to `olist_orders_dataset.order_id`.                                                             |
-| `order_item_id`       | `INTEGER`        | **PK**   | Sequential index of the item within the order (1, 2, …). Identifies the line in multi-item orders.   |
-| `product_id`          | `VARCHAR`        | **FK**   | Links to `olist_products_dataset.product_id`.                                                        |
-| `seller_id`           | `VARCHAR`        | **FK**   | Links to `olist_sellers_dataset.seller_id`, the merchant fulfilling this item.                        |
-| `shipping_limit_date` | `TIMESTAMP`      |          | Deadline by which the seller must ship this item.                                                    |
-| `price`               | `NUMERIC`        |          | Unit price of the product (in BRL).                                                                   |
-| `freight_value`       | `NUMERIC`        |          | Shipping fee for this item.                                                                          |
+| Column Name | Data Type | Business Description |
+| --- | --- | --- |
+| `order_id` | `VARCHAR` | Foreign key linking to `silver.orders.order_id`. |
+| `payment_sequential` | `INT` | Sequence number for split payments (e.g., if an order is paid using multiple payment methods or vouchers). |
+| `payment_type` | `VARCHAR` | Lowercase payment method used (e.g., `credit_card`, `boleto`, `voucher`). |
+| `payment_installments` | `INT` | Number of installments selected for credit card payments. |
+| `payment_val` | `NUMERIC(10,2)` | Amount paid in this specific payment transaction entry (BRL). |
 
-## 4. Order Payments (`olist_order_payments_dataset`)
+### 5. Order Reviews (`silver.order_reviews`)
 
-Records of how each order was paid (supports split payments).
+| Column Name | Data Type | Business Description |
+| --- | --- | --- |
+| `review_id` | `VARCHAR` | Unique identifier for the customer review. |
+| `order_id` | `VARCHAR` | Foreign key linking to `silver.orders.order_id`. |
+| `review_score` | `INT` | Customer satisfaction rating on a scale from 1 to 5. |
+| `comment` | `TEXT` | Sanitized text feedback from the customer. Empty strings default to `'no_comment'`. |
 
-| Column Name             | Silver Data Type | Key Type | Business Description                                                                                  |
-| ----------------------- | ---------------: | :------: | ------------------------------------------------------------------------------------------------------ |
-| `order_id`              | `VARCHAR`        | **FK**   | Links to the order in `olist_orders_dataset`.                                                        |
-| `payment_sequential`    | `INTEGER`        | **PK**   | Sequence number for the payment record (e.g., if a customer split payment into multiple entries).     |
-| `payment_type`          | `VARCHAR`        |          | Method used (e.g., `credit_card`, `boleto`, `voucher`).                                               |
-| `payment_installments`  | `INTEGER`        |          | Number of installments chosen (for credit card payments).                                             |
-| `payment_value`         | `NUMERIC`        |          | Amount paid in this payment transaction (BRL).                                                       |
+### 6. Products (`silver.products`)
 
-## 5. Order Reviews (`olist_order_reviews_dataset`)
+| Column Name | Data Type | Business Description |
+| --- | --- | --- |
+| `product_id` | `VARCHAR` | Unique identifier for the product. |
+| `category` | `VARCHAR` | Lowercase category name standardized in Portuguese. Missing data defaults to `'uncategorized'`. |
+| `product_name_length` | `INT` | Character length of the product name. Cleaned column mapping from source. |
+| `product_description_length` | `INT` | Character length of the product description text. |
+| `weight_g` | `INT` | Product weight in grams. Core predictive feature for logistics modeling and freight cost calculations. |
+| `length_cm` | `INT` | Packaged product length in centimeters. Used for physical dimension analysis. |
+| `height_cm` | `INT` | Packaged product height in centimeters. |
+| `width_cm` | `INT` | Packaged product width in centimeters. |
 
-Customer feedback and satisfaction scores post-delivery.
+### 7. Sellers (`silver.sellers`)
 
-| Column Name              | Silver Data Type | Key Type | Business Description                                                                                  |
-| ------------------------ | ---------------: | :------: | ------------------------------------------------------------------------------------------------------ |
-| `review_id`              | `VARCHAR`        | **PK**   | Unique ID for the review.                                                                            |
-| `order_id`               | `VARCHAR`        | **FK**   | Links to the reviewed order in `olist_orders_dataset`.                                                |
-| `review_score`           | `INTEGER`        |          | Customer rating (1–5) for the order experience.                                                       |
-| `review_comment_title`   | `TEXT`           |          | Optional review title (Portuguese).                                                                  |
-| `review_comment_message` | `TEXT`           |          | Optional written review (Portuguese).                                                                |
-| `review_creation_date`   | `TIMESTAMP`      |          | When the review request was sent to the customer.                                                    |
-| `review_answer_timestamp`| `TIMESTAMP`      |          | When the customer submitted the review.                                                             |
+| Column Name | Data Type | Business Description |
+| --- | --- | --- |
+| `seller_id` | `VARCHAR` | Unique identifier for the merchant. |
+| `zip_code` | `VARCHAR` | Trimmed and standardized 5-digit ZIP code prefix of the merchant's operational location. |
+| `city` | `VARCHAR` | Standardized and title-cased city name where the seller is located. |
+| `state` | `VARCHAR` | Uppercase two-letter state abbreviation of the seller. |
 
-## 6. Products (`olist_products_dataset`)
+### 8. Geolocation (`silver.geolocation`)
 
-Catalog of products with category and dimension attributes.
+| Column Name | Data Type | Business Description |
+| --- | --- | --- |
+| `zip_code` | `VARCHAR` | Primary key prefix capturing geographic spatial grouping. |
+| `lat` | `NUMERIC(9,6)` | Precise latitude coordinate. |
+| `lng` | `NUMERIC(9,6)` | Precise longitude coordinate. |
 
-| Column Name                    | Silver Data Type | Key Type | Business Description                                                                                  |
-| ------------------------------ | ---------------: | :------: | ------------------------------------------------------------------------------------------------------ |
-| `product_id`                   | `VARCHAR`        | **PK**   | Unique identifier for each product.                                                                  |
-| `product_category_name`        | `VARCHAR`        | **FK**   | Category name in Portuguese (links to `product_category_name_translation`).                           |
-| `product_name_lenght`          | `INTEGER`        |          | Number of characters in the product’s name (note the misspelling “lenght” is as in source CSV).       |
-| `product_description_lenght`   | `INTEGER`        |          | Number of characters in the product’s description.                                                   |
-| `product_photos_qty`           | `INTEGER`        |          | How many photos are in the product listing.                                                         |
-| `product_weight_g`             | `NUMERIC`        |          | Weight of the product (in grams).                                                                   |
-| `product_length_cm`            | `NUMERIC`        |          | Length of the packaged product (cm).                                                                |
-| `product_height_cm`            | `NUMERIC`        |          | Height of the packaged product (cm).                                                                |
-| `product_width_cm`             | `NUMERIC`        |          | Width of the packaged product (cm).                                                                 |
+### 9. Category Translation (`silver.category_translation`)
 
-## 7. Sellers (`olist_sellers_dataset`)
-
-Merchant fulfillment locations.
-
-| Column Name               | Silver Data Type | Key Type | Business Description                                                                                  |
-| ------------------------- | ---------------: | :------: | ------------------------------------------------------------------------------------------------------ |
-| `seller_id`               | `VARCHAR`        | **PK**   | Unique identifier for the merchant.                                                                  |
-| `seller_zip_code_prefix`  | `VARCHAR`        | **FK**   | First 5 digits of the seller’s ZIP code (links to geolocation for the seller).                         |
-| `seller_city`             | `VARCHAR`        |          | City where the seller is located.                                                                    |
-| `seller_state`            | `VARCHAR`        |          | State of the seller.                                                                                 |
-
-## 8. Geolocation (`olist_geolocation_dataset`)
-
-Spatial mapping of Brazilian zip codes to coordinates.
-
-| Column Name                 | Silver Data Type | Key Type | Business Description                                                                                  |
-| --------------------------- | ---------------: | :------: | ------------------------------------------------------------------------------------------------------ |
-| `geolocation_zip_code_prefix` | `VARCHAR`      | **PK**   | First 5 digits of the ZIP code.                                                                      |
-| `geolocation_lat`           | `NUMERIC`        |          | Latitude coordinate.                                                                                 |
-| `geolocation_lng`           | `NUMERIC`        |          | Longitude coordinate.                                                                                |
-| `geolocation_city`          | `VARCHAR`        |          | City name.                                                                                           |
-| `geolocation_state`         | `VARCHAR`        |          | State abbreviation.                                                                                 |
-
-## 9. Category Translation (`product_category_name_translation`)
-
-Localization mapping for product categories.
-
-| Column Name                   | Silver Data Type | Key Type | Business Description                                                                                  |
-| ----------------------------- | ---------------: | :------: | ------------------------------------------------------------------------------------------------------ |
-| `product_category_name`       | `VARCHAR`        | **PK**   | Category name in Portuguese.                                                                        |
-| `product_category_name_english` | `VARCHAR`      |          | Category name translated to English.                                                                |
+| Column Name | Data Type | Business Description |
+| --- | --- | --- |
+| `category_pt` | `VARCHAR` | Trimmed, lowercase category name in Portuguese. Links directly to `silver.products.category`. |
+| `category_en` | `VARCHAR` | Trimmed, lowercase category translation in English for localized analytical reporting. |
 
 ---
 
-### Strategic Engineering Notes & Relational Traps
+### Engineering Notes & Relational Traps
 
 1. **The Identity Trap (`customers`)**: Each new order gets a new `customer_id` even if the buyer is the same person. In other words, `customer_id` is not a stable customer key. To track true returning customers and compute lifetime value, queries must use `customer_unique_id`, which persists across multiple orders.
 
@@ -128,5 +107,13 @@ Localization mapping for product categories.
 3. **Cartesian Join (Fan-Out) Risk**: Directly joining `order_items` to `order_payments` on `order_id` causes a row explosion (many-to-many join). For instance, an order with 3 items and 1 payment would duplicate that payment three times, inflating revenue 3×. Similarly, multiple payments and items can produce a Cartesian product, severely distorting sums. The solution is to pre-aggregate payments (and/or items) per order before joining to the order fact.
 
 4. **Unstructured Text Fields**: Review text fields contain raw user input (e.g. `review_comment_message`) with possible newlines, trailing spaces, or backslashes. In practice, the ETL uses functions like `NULLIF(..., '')` and `TRIM(...)` to sanitize these fields. For example, one implementation strips whitespace from `review_comment_message` and handles empty strings explicitly, ensuring clean insertion into the data warehouse.
+
+5. **Data Integrity Flag**: The `silver.orders` table now includes `is_date_missing_flag`, which acts as a data quality indicator for identifying incomplete delivery records.
+
+6. **Normalization**: All textual categorical data (status, payment types, categories) has been cast to `LOWER` to ensure consistency in joins and filters.
+
+7. **Spatial Consistency**: `silver.customers` and `silver.sellers` both now use `zip_code` (derived from `prefix`) and standardized city/state casing, facilitating cleaner joins with `silver.geolocation`.
+
+8. **Predictive Feature & SLA Retention**: Crucial supply-chain checkpoints (`estimated_delivery_ts`, `shipping_limit_ts`, `approved_ts`, `carrier_delivered_ts`) and physical properties (`weight_g`, package dimensions) are deliberately kept and typed in the Silver layer. This guarantees the pipeline can reliably feed the downstream XGBoost predictive delay engine and track shipping performance milestones accurately in Power BI dashboards.
 
 **Sources:** Schema details and definitions are drawn from the official Olist dataset documentation and community resources. The traps and design notes reflect best practices established in Olist data engineering projects.
