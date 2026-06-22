@@ -3,7 +3,7 @@
 
 An end-to-end Decision Intelligence Platform that transforms raw e-commerce data into actionable business decisions using Medallion Architecture, Business Intelligence, Machine Learning, APIs, and AI-assisted decision support.
 
-[Portfolio](https://www.datascienceportfol.io/lindahkima2) | [LinkedIn](https://www.linkedin.com/in/lindah-kima/) | [Medium](https://github.com/Lindah-Kima) | [Credly](https://www.credly.com/users/lindah-kima)
+[Portfolio](datascienceportfol.io/Lindah) | [LinkedIn](https://www.linkedin.com/in/lindah-kima/) | [Medium](https://github.com/Lindah-Kima) | [Credly](https://www.credly.com/users/lindah-kima)
 
 ---
 ## Business Problem
