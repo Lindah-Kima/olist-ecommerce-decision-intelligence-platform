@@ -1,0 +1,35 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-KE
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["gold dim_customers","gold dim_date","gold dim_products","gold dim_sellers","gold fact_order_items","gold fact_order_payments","Executive Measures"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DaxQueryView_Desktop","DevMode"]
+
+ref table 'gold dim_customers'
+ref table 'gold dim_date'
+ref table DateTableTemplate_c6badd6e-81df-45e1-8e97-713a523e4a4f
+ref table LocalDateTable_6216dc6e-2ee9-440a-bd93-56798a042eb0
+ref table 'gold dim_products'
+ref table 'gold dim_sellers'
+ref table 'gold fact_order_items'
+ref table LocalDateTable_14fcf5d0-1f17-4906-b01a-0f5eb2b14729
+ref table LocalDateTable_dcb4fd5a-9750-43b5-99a7-515c66ae1bde
+ref table LocalDateTable_8ae79f77-d527-4af6-86dd-fc42885d302c
+ref table LocalDateTable_950d1ffc-3cf9-4ada-967d-4d8b7b2cc5fc
+ref table LocalDateTable_d289e8bf-2340-4157-b878-56ba63e564cf
+ref table LocalDateTable_372ae345-d1ff-40f7-9875-909ace5e9a6b
+ref table 'gold fact_order_payments'
+ref table Executive_KPIs
+ref table Customer_KPIs
+ref table Logistics_KPIs
+ref table Seller_KPIs
+
+ref cultureInfo en-US
+

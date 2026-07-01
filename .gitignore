@@ -92,3 +92,12 @@ htmlcov/
 mlruns/
 lightning_logs/
 wandb/
+
+# exclude user specific settings 
+*.pbi/
+
+# exclude temporary data cache
+.data/
+
+# exclude pbix file
+*.pbix

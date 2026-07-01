@@ -1,0 +1,18 @@
+table Seller_KPIs
+	lineageTag: c821beef-af70-4e94-a82f-9c99dc5c0ceb
+
+	column Value
+		formatString: 0
+		lineageTag: 35a8b0ba-29aa-461e-a92c-ef38cb8708fd
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Seller_KPIs = calculated
+		mode: import
+		source = { BLANK() }
+
+	annotation PBI_Id = 9237a0279f914ba987a0bb54300c0838
+

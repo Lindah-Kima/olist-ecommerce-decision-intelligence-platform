@@ -1,0 +1,18 @@
+table Logistics_KPIs
+	lineageTag: 4ae47a90-f15b-480c-8035-a6627cab7547
+
+	column Value
+		formatString: 0
+		lineageTag: 8d09794b-a53f-4c6e-b501-7db4cc5ff2f7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Logistics_KPIs = calculated
+		mode: import
+		source = { BLANK() }
+
+	annotation PBI_Id = 7565fb7739e347878326d6c84dd7c80e
+

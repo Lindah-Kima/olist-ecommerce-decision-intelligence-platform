@@ -1,0 +1,77 @@
+table 'gold fact_order_payments'
+	lineageTag: 5809a7c8-b34b-426e-ae54-9458c7f8f73c
+
+	column order_id
+		dataType: string
+		lineageTag: 524822e2-2280-4246-b528-93ec24149e47
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_sequential
+		dataType: int64
+		formatString: 0
+		lineageTag: fd3c8278-4f6b-4f2b-acfb-a76fd7fd95fc
+		summarizeBy: sum
+		sourceColumn: payment_sequential
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 46ac9fca-51bd-493b-a951-a958b064744b
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column purchase_date_id
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0de2fa7b-7393-4976-9a14-7f81cb29cc8b
+		summarizeBy: none
+		sourceColumn: purchase_date_id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column payment_type
+		dataType: string
+		lineageTag: 5ac76e33-fc85-4963-aebd-22591b1397e3
+		summarizeBy: none
+		sourceColumn: payment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_installments
+		dataType: int64
+		formatString: 0
+		lineageTag: c79e2a2b-5c59-405b-a37b-9441a33875e2
+		summarizeBy: sum
+		sourceColumn: payment_installments
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_value
+		dataType: double
+		lineageTag: 7bd4917c-e4e0-40b6-b5e5-7adf82802624
+		summarizeBy: sum
+		sourceColumn: payment_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'gold fact_order_payments' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("pg-2125de06-lindah-2028.i.aivencloud.com:13669", "defaultdb"),
+				    gold_fact_order_payments = Source{[Schema="gold",Item="fact_order_payments"]}[Data]
+				in
+				    gold_fact_order_payments
+
+	annotation PBI_ResultType = Table
+

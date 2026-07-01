@@ -1,0 +1,126 @@
+table Executive_KPIs
+	lineageTag: 58f3e3ad-a1a3-4547-b50d-efabf8717e9d
+
+	measure 'Total Revenue' =
+			
+			SUM('gold fact_order_payments'[payment_value])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: f62c2c39-4810-443a-ba64-2393ff8c3b2e
+
+	measure 'Total Orders' =
+			
+			DISTINCTCOUNT('gold fact_order_items'[order_id])
+		formatString: 0
+		lineageTag: df23e869-ae0b-42ec-a2e9-af234394b6a2
+
+	measure 'Total Customers' =
+			
+			DISTINCTCOUNT('gold dim_customers'[customer_id])
+		formatString: 0
+		lineageTag: 1b47540c-3c87-4726-8d74-c9b82f0338a6
+
+	measure 'Average Order Value' =
+			
+			DIVIDE(
+			    [Total Revenue],
+			    [Total Orders],
+			    0
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 42407431-b09c-45de-96cb-be4034f4fe0c
+
+	measure 'Previous Period Revenue' =
+			
+			CALCULATE(
+			    [Total Revenue],
+			    DATEADD(
+			        'gold dim_date'[day],
+			        -1,
+			        MONTH
+			    )
+			)
+		formatString: 0
+		lineageTag: 639e2179-5d8b-4e4c-8c4b-5934d116b1a4
+
+	measure 'Revenue Growth %' =
+			
+			DIVIDE(
+			    [Total Revenue] - [Previous Period Revenue],
+			    [Previous Period Revenue],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ee7e9549-9074-4e77-bfa1-5cd9568e76e8
+
+	measure 'Previous Period Orders' =
+			
+			CALCULATE(
+			    [Total Orders],
+			    DATEADD(
+			        'gold dim_date'[day],
+			        -1,
+			        MONTH
+			    )
+			)
+		formatString: 0
+		lineageTag: e482b8ec-6c5b-42ca-b2eb-6d2761c5929e
+
+	measure 'Order Growth %' =
+			
+			DIVIDE(
+			    [Total Orders] - [Previous Period Orders],
+			    [Previous Period Orders],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c1d138b3-c581-4d4b-921b-3aa1f0ef561e
+
+	measure 'Revenue Contribution %' =
+			
+			DIVIDE(
+			    [Total Revenue],
+			    CALCULATE(
+			        [Total Revenue],
+			        ALL('gold dim_products')
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ae5a8b26-0e3c-49dc-a5fa-fae8c3cbab1b
+
+	measure 'Category Revenue Rank' =
+			
+			RANKX(
+			    ALL('gold dim_products'[category_en]),
+			    [Total Revenue],
+			    ,
+			    DESC
+			)
+		formatString: 0
+		lineageTag: 24fcc543-22a3-413a-9304-c4058ff3f7ea
+
+	measure 'Revenue Per Customer' =
+			
+			DIVIDE(
+			    [Total Revenue],
+			    [Total Customers],
+			    0
+			)
+		lineageTag: 1599be8d-93ac-414f-bdee-2a9b00d88fb6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		formatString: 0
+		lineageTag: f84835f6-2860-44c5-b397-82a97d697ddd
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Executive_KPIs = calculated
+		mode: import
+		source = { BLANK() }
+
+	annotation PBI_Id = c6ee4a0db64c4886bc6e7ebcb03d1eb6
+

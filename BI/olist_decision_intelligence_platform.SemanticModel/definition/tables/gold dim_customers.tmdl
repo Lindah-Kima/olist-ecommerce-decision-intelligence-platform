@@ -1,0 +1,54 @@
+table 'gold dim_customers'
+	lineageTag: 1cc738c1-2357-42b4-b1e5-c3dd2c6f803d
+
+	column customer_id
+		dataType: string
+		lineageTag: 425c0744-ea01-49c8-a0c2-6551765c3bdf
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_unique_id
+		dataType: string
+		lineageTag: 2b36d7d8-4dc5-4bed-a500-4ec4ff241d19
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column zip_code
+		dataType: string
+		lineageTag: 5612a68b-ba17-4321-9272-4710774a8d82
+		summarizeBy: none
+		sourceColumn: zip_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: aa677b21-5dea-4365-b99c-905370aefd72
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 82c0bc39-34b5-4a70-a533-cd7a2cfbd634
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_customers' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("pg-2125de06-lindah-2028.i.aivencloud.com:13669", "defaultdb"),
+				    gold_dim_customers = Source{[Schema="gold",Item="dim_customers"]}[Data]
+				in
+				    gold_dim_customers
+
+	annotation PBI_ResultType = Table
+
