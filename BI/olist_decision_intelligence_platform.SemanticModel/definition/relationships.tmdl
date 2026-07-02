@@ -1,0 +1,59 @@
+relationship 4dc52741-f995-4601-85c1-672b9654f150
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_date'.date_id
+	toColumn: LocalDateTable_6216dc6e-2ee9-440a-bd93-56798a042eb0.Date
+
+relationship 5fa510da-993c-40c0-9ab5-6a5376c5188c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_order_items'.purchase_ts
+	toColumn: LocalDateTable_14fcf5d0-1f17-4906-b01a-0f5eb2b14729.Date
+
+relationship 5fdf5ea9-9ec7-4004-a19f-8b005af27db5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_order_items'.approved_ts
+	toColumn: LocalDateTable_dcb4fd5a-9750-43b5-99a7-515c66ae1bde.Date
+
+relationship d584016b-a731-4292-a229-edc485512025
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_order_items'.carrier_delivered_ts
+	toColumn: LocalDateTable_8ae79f77-d527-4af6-86dd-fc42885d302c.Date
+
+relationship 13b6bb02-daaf-4929-8c4b-631a855d45ad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_order_items'.delivered_ts
+	toColumn: LocalDateTable_950d1ffc-3cf9-4ada-967d-4d8b7b2cc5fc.Date
+
+relationship 0f6020cd-7858-472f-ae6b-1571ee00e5fa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_order_items'.estimated_delivery_ts
+	toColumn: LocalDateTable_d289e8bf-2340-4157-b878-56ba63e564cf.Date
+
+relationship 65bb8496-453e-46eb-b046-fb9ca7190a97
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_order_items'.shipping_limit_ts
+	toColumn: LocalDateTable_372ae345-d1ff-40f7-9875-909ace5e9a6b.Date
+
+relationship 73770ed4-9845-9d11-3d96-546dd0b58d86
+	fromColumn: 'gold fact_order_items'.customer_id
+	toColumn: 'gold dim_customers'.customer_id
+
+relationship 59dda489-711f-1cf9-6dd1-e2df415e9266
+	fromColumn: 'gold fact_order_payments'.customer_id
+	toColumn: 'gold dim_customers'.customer_id
+
+relationship ebed391a-110d-1c7d-8ada-58ab506f753e
+	fromColumn: 'gold fact_order_items'.product_id
+	toColumn: 'gold dim_products'.product_id
+
+relationship 62d15a3c-c67a-825e-03a2-cb7a4dcd7df5
+	fromColumn: 'gold fact_order_items'.seller_id
+	toColumn: 'gold dim_sellers'.seller_id
+
+relationship 50d58374-45cf-b2c8-e0ab-417a0f5af3bb
+	fromColumn: 'gold fact_order_items'.purchase_date_id
+	toColumn: 'gold dim_date'.date_id
+
+relationship db6bff5c-aa34-36ad-587d-7c85fab7daa8
+	fromColumn: 'gold fact_order_payments'.purchase_date_id
+	toColumn: 'gold dim_date'.date_id
+

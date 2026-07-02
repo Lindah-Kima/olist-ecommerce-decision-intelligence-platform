@@ -1,0 +1,18 @@
+table Customer_KPIs
+	lineageTag: 8b283c4b-e28d-43d3-ac7d-42e5100e62a7
+
+	column Value
+		formatString: 0
+		lineageTag: 49a16e5d-fc39-4cdc-8fbc-a24ef06e82e5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer_KPIs = calculated
+		mode: import
+		source = { BLANK() }
+
+	annotation PBI_Id = d1a8403eb6834a449ba158908037e542
+
