@@ -172,10 +172,16 @@ Power BI dashboards are designed to answer strategic and operational business qu
 
 ### Executive Dashboard
 
-* Revenue performance
-* Order trends
-* Customer growth
-* Regional performance
+The executive wants answers to questions like:
+
+* How much revenue did we generate?
+* Are we growing?
+* How many orders do we have?
+* How many customers are we serving?
+* What is the average order value?
+* How are these KPIs trending over time?
+
+They are looking for high-level business performance.
 
 ### Logistics Dashboard
 
