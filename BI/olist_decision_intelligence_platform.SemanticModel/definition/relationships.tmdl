@@ -1,8 +1,3 @@
-relationship 4dc52741-f995-4601-85c1-672b9654f150
-	joinOnDateBehavior: datePartOnly
-	fromColumn: 'gold dim_date'.date_id
-	toColumn: LocalDateTable_6216dc6e-2ee9-440a-bd93-56798a042eb0.Date
-
 relationship 5fa510da-993c-40c0-9ab5-6a5376c5188c
 	joinOnDateBehavior: datePartOnly
 	fromColumn: 'gold fact_order_items'.purchase_ts

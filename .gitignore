@@ -101,3 +101,11 @@ wandb/
 
 # exclude pbix file
 *.pbix
+
+# Power BI auto-generated local date tables
+**/LocalDateTable_*.tmdl
+**/DateTableTemplate_*.tmdl
+
+# # Development artifacts
+# **/DAXQueries/
+# **/TMDLScripts/
