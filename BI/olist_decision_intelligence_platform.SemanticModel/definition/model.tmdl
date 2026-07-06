@@ -15,7 +15,6 @@ annotation PBI_ProTooling = ["TMDLView_Desktop","DaxQueryView_Desktop","DevMode"
 ref table 'gold dim_customers'
 ref table 'gold dim_date'
 ref table DateTableTemplate_c6badd6e-81df-45e1-8e97-713a523e4a4f
-ref table LocalDateTable_6216dc6e-2ee9-440a-bd93-56798a042eb0
 ref table 'gold dim_products'
 ref table 'gold dim_sellers'
 ref table 'gold fact_order_items'

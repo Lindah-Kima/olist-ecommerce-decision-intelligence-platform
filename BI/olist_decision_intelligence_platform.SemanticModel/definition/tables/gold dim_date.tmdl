@@ -1,17 +1,14 @@
 table 'gold dim_date'
 	lineageTag: e2af5074-a8b8-4eef-9fa4-ce86356820be
+	dataCategory: Time
 
 	column date_id
 		dataType: dateTime
+		isKey
 		formatString: Long Date
 		lineageTag: b964ccd2-f82c-433a-9d3e-8dd207326f0d
 		summarizeBy: none
 		sourceColumn: date_id
-
-		variation Variation
-			isDefault
-			relationship: 4dc52741-f995-4601-85c1-672b9654f150
-			defaultHierarchy: LocalDateTable_6216dc6e-2ee9-440a-bd93-56798a042eb0.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 

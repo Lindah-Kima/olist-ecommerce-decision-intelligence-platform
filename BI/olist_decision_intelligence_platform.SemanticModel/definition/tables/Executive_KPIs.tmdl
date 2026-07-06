@@ -4,18 +4,23 @@ table Executive_KPIs
 	measure 'Total Revenue' =
 			
 			SUM('gold fact_order_payments'[payment_value])
+			// How much revenue has the business generated?
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		lineageTag: f62c2c39-4810-443a-ba64-2393ff8c3b2e
 
 	measure 'Total Orders' =
 			
 			DISTINCTCOUNT('gold fact_order_items'[order_id])
+			// How many orders have customers placed?
+			// Create a measure called Total Orders. Look at the order_id column in the fact_orders table and count each unique order only once.
 		formatString: 0
 		lineageTag: df23e869-ae0b-42ec-a2e9-af234394b6a2
 
 	measure 'Total Customers' =
 			
 			DISTINCTCOUNT('gold dim_customers'[customer_id])
+			// How many unique customers have made purchases?
+			// Create a measure called Total Customers. Look at every customer ID in the customers table and count each customer only once.
 		formatString: 0
 		lineageTag: 1b47540c-3c87-4726-8d74-c9b82f0338a6
 
@@ -26,6 +31,9 @@ table Executive_KPIs
 			    [Total Orders],
 			    0
 			)
+			
+			// On average, how much does each order contribute to revenue?
+			// Create a measure called Average Order Value. Divide Total Revenue by Total Orders. If there are no orders, return 0 instead of an error.
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		lineageTag: 42407431-b09c-45de-96cb-be4034f4fe0c
 
@@ -34,11 +42,14 @@ table Executive_KPIs
 			CALCULATE(
 			    [Total Revenue],
 			    DATEADD(
-			        'gold dim_date'[day],
+			        'gold dim_date'[date_id],
 			        -1,
 			        MONTH
 			    )
 			)
+			
+			// How much revenue did we generate in the previous period?
+			// Create a measure called Previous Period Revenue. Start with the existing Total Revenue measure. Before calculating it, shift the current date context back by one month using the date_id column from the date table. Then calculate and return the revenue for that previous month.
 		formatString: 0
 		lineageTag: 639e2179-5d8b-4e4c-8c4b-5934d116b1a4
 
@@ -49,6 +60,8 @@ table Executive_KPIs
 			    [Previous Period Revenue],
 			    0
 			)
+			
+			// By what percentage has revenue increased or decreased compared to the previous period?
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: ee7e9549-9074-4e77-bfa1-5cd9568e76e8
 
@@ -62,6 +75,8 @@ table Executive_KPIs
 			        MONTH
 			    )
 			)
+			
+			// How many orders were placed in the previous period?
 		formatString: 0
 		lineageTag: e482b8ec-6c5b-42ca-b2eb-6d2761c5929e
 
@@ -72,6 +87,8 @@ table Executive_KPIs
 			    [Previous Period Orders],
 			    0
 			)
+			
+			// Are customers placing more or fewer orders than before?
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: c1d138b3-c581-4d4b-921b-3aa1f0ef561e
 
@@ -84,6 +101,8 @@ table Executive_KPIs
 			        ALL('gold dim_products')
 			    )
 			)
+			
+			// What percentage of total revenue comes from each region or product category?
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: ae5a8b26-0e3c-49dc-a5fa-fae8c3cbab1b
 
@@ -95,6 +114,8 @@ table Executive_KPIs
 			    ,
 			    DESC
 			)
+			
+			// Which product categories generate the most revenue?
 		formatString: 0
 		lineageTag: 24fcc543-22a3-413a-9304-c4058ff3f7ea
 
