@@ -18,7 +18,7 @@ table Executive_KPIs
 
 	measure 'Total Customers' =
 			
-			DISTINCTCOUNT('gold dim_customers'[customer_id])
+			DISTINCTCOUNT('gold fact_order_items'[customer_unique_id])
 			// How many unique customers have made purchases?
 			// Create a measure called Total Customers. Look at every customer ID in the customers table and count each customer only once.
 		formatString: 0
@@ -55,13 +55,18 @@ table Executive_KPIs
 
 	measure 'Revenue Growth %' =
 			
-			DIVIDE(
-			    [Total Revenue] - [Previous Period Revenue],
-			    [Previous Period Revenue],
-			    0
+			VAR PreviousRevenue = [Previous Period Revenue]
+			RETURN
+			IF(
+			    ISBLANK(PreviousRevenue),
+			    BLANK(),
+			    DIVIDE(
+			        [Total Revenue] - PreviousRevenue,
+			        PreviousRevenue
+			    )
 			)
-			
 			// By what percentage has revenue increased or decreased compared to the previous period?
+			// Create a measure called Revenue Growth %. Calculate the difference between the current month's revenue and the previous month's revenue. Divide that difference by the previous month's revenue to determine the growth rate. If the previous month's revenue is zero, return 0 instead of an error.
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: ee7e9549-9074-4e77-bfa1-5cd9568e76e8
 
@@ -70,25 +75,31 @@ table Executive_KPIs
 			CALCULATE(
 			    [Total Orders],
 			    DATEADD(
-			        'gold dim_date'[day],
+			        'gold dim_date'[date_id],
 			        -1,
 			        MONTH
 			    )
 			)
 			
-			// How many orders were placed in the previous period?
+			//How many orders did the business receive in the previous month?
+			// Create a measure called Previous Period Orders. Calculate the existing Total Orders measure, but before doing so, shift the current date context back by one month using the date_id column. Return the number of orders from that previous month.
 		formatString: 0
 		lineageTag: e482b8ec-6c5b-42ca-b2eb-6d2761c5929e
 
 	measure 'Order Growth %' =
 			
-			DIVIDE(
-			    [Total Orders] - [Previous Period Orders],
-			    [Previous Period Orders],
-			    0
+			VAR PreviousOrders = [Previous Period Orders]
+			RETURN
+			IF(
+			    ISBLANK(PreviousOrders),
+			    BLANK(),
+			    DIVIDE(
+			        [Total Orders] - PreviousOrders,
+			        PreviousOrders
+			    )
 			)
-			
-			// Are customers placing more or fewer orders than before?
+			// Has the number of customer orders increased or decreased compared to the previous month?
+			// Create a measure called Order Growth %. First, calculate and store the previous month's order count in a variable called PreviousOrders. If there is no previous month's data, return a blank because growth cannot be calculated. Otherwise, calculate the difference between the current month's orders and the previous month's orders, divide that difference by the previous month's orders, and return the resulting growth percentage.
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: c1d138b3-c581-4d4b-921b-3aa1f0ef561e
 
@@ -119,14 +130,60 @@ table Executive_KPIs
 		formatString: 0
 		lineageTag: 24fcc543-22a3-413a-9304-c4058ff3f7ea
 
-	measure 'Revenue Per Customer' =
+	measure 'Revenue per Customer' =
 			
 			DIVIDE(
 			    [Total Revenue],
-			    [Total Customers],
-			    0
+			    [Total Customers]
 			)
+			
+			// Create a measure called Revenue per Customer. Divide the Total Revenue by the Total Customers to calculate how much revenue, on average, each customer generates. Use DIVIDE to safely handle cases where there are no customers in the current filter context.
 		lineageTag: 1599be8d-93ac-414f-bdee-2a9b00d88fb6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Previous Period Customers' =
+			
+			CALCULATE(
+			    [Total Customers],
+			    DATEADD(
+			        'gold dim_date'[date_id],
+			        -1,
+			        MONTH
+			    )
+			)
+			
+			// Is the business acquiring more or fewer customers compared to the previous month?
+			// Create a measure called Previous Period Customers. Calculate the Total Customers measure, but first move the current date context back by one month. Return the number of unique customers from the previous month.
+		formatString: 0
+		lineageTag: 5b79ce5d-4682-4d98-a8ca-577d8ee77233
+
+	measure 'Customer Growth %' =
+			
+			VAR PreviousCustomers = [Previous Period Customers]
+			RETURN
+			IF(
+			    ISBLANK(PreviousCustomers),
+			    BLANK(),
+			    DIVIDE(
+			        [Total Customers] - PreviousCustomers,
+			        PreviousCustomers
+			    )
+			)
+			// Create a measure called Customer Growth %. First, calculate and store the previous month's customer count in a variable called PreviousCustomers. If there is no previous month's data, return a blank because customer growth cannot be calculated. Otherwise, calculate the difference between the current month's customer count and the previous month's customer count, divide that difference by the previous month's customer count, and return the growth percentage.
+		lineageTag: c1434bfc-5245-4dd4-bfce-917af97d047d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Orders per Customer' =
+			
+			DIVIDE(
+			    [Total Orders],
+			    [Total Customers]
+			)
+			
+			// Create a measure called Orders per Customer. Divide the Total Orders by the Total Customers to calculate the average number of orders placed by each customer. Use DIVIDE so the measure returns a blank instead of an error if there are no customers.
+		lineageTag: e971a728-b754-4889-a09e-5fbeabdc8397
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

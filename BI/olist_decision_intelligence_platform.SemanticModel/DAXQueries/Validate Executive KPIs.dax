@@ -1,0 +1,200 @@
+// Business Question
+// Why this KPI matters
+// What data we need
+// How we think about the calculation
+// Write the DAX
+// Read the DAX in plain English
+// Validate it in DAX Query View
+// Read the validation query in plain English
+// Expected result and business interpretation
+
+
+// How much revenue has the business generated?
+// Create a table with one row and one column. Name the column "Total Revenue" and display the value calculated by the Total Revenue measure.
+EVALUATE
+ROW(
+    "Total Revenue",
+    [Total Revenue]
+)
+
+// Validate Revenue by Year
+// Create a summary table. Group the data by Year. For each year, calculate the Total Revenue and display it in a column called Revenue.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year], 
+    "Revenue", [Total Revenue]
+)
+
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year], 
+    "Our Revenue", [Total Revenue]
+)
+
+// How many orders have customers placed? How much business activity occurred
+// Create a table with one row and one column. Name the column "Total Orders" and display the value calculated by the Total Orders measure.
+
+EVALUATE
+ROW(
+    "Total Orders",
+    [Total Orders]
+)
+
+// Create a summary table. Group the data by Year. For each year, calculate the Total Orders and display the result in a column called Our Orders.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    "Our Orders",
+    [Total Orders]
+)
+
+// Create a table with one row and one column. Name the column "Total Customers" and display the value calculated by the Total Customers measure.
+EVALUATE
+ROW(
+    "Total Customers",
+    [Total Customers]
+)
+
+// Create a summary table. Group the data by Year. For each year, count the unique customers who made purchases and display the result in a column called Customers.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    "Our Customers",
+    [Total Customers]
+)
+
+// Create a table with one row and one column. Name the column "Average Order Value" and display the value calculated by the Average Order Value measure.
+EVALUATE
+ROW(
+    "Average Order Value",
+    [Average Order Value]
+)
+
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    "Average Order Value",
+    [Average Order Value]
+)
+
+// Create a summary table. Group the data by Year and Month. For each month, calculate the current Total Revenue and the Previous Period Revenue, then display both values side by side so we can compare this month's performance with the previous month's.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    'gold dim_date'[month_name],
+    "Revenue", [Total Revenue],
+    "Previous Period Revenue", [Previous Period Revenue]
+)
+
+// Create a table with one row and one column. Name the column "Revenue Growth %" and display the value calculated by the Revenue Growth % measure.
+EVALUATE
+ROW(
+    "Revenue Growth %",
+    [Revenue Growth %]
+)
+
+// Create a summary table. Group the data first by Year, then by Month. For each month, calculate the Total Revenue, Previous Period Revenue, and Revenue Growth Percentage. Finally, sort the results chronologically using the numeric month so that January comes before February, February before March, and so on.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    'gold dim_date'[month],
+    'gold dim_date'[month_name],
+    "Revenue", [Total Revenue],
+    "Previous Period Revenue", [Previous Period Revenue],
+    "Revenue Growth %", [Revenue Growth %]
+)
+ORDER BY
+    'gold dim_date'[year],
+    'gold dim_date'[month]
+
+
+EVALUATE
+ROW(
+    "Previous Period Orders",
+    [Previous Period Orders]
+)
+
+// Create a summary table. Group the data by Year and Month. For each month, calculate the current Total Orders and the Previous Period Orders. Display both values side by side so we can compare order volumes across consecutive months.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    'gold dim_date'[month],
+    'gold dim_date'[month_name],
+    "Orders", [Total Orders],
+    "Previous Period Orders", [Previous Period Orders]
+)
+ORDER BY
+    'gold dim_date'[year],
+    'gold dim_date'[month]
+
+
+// Create a summary table. Group the data by Year and Month. For each month, calculate the current month's Total Orders, the Previous Period Orders, and the Order Growth Percentage. Display all three values side by side so we can evaluate whether customer order volume is increasing or decreasing over time.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    'gold dim_date'[month],
+    'gold dim_date'[month_name],
+    "Orders", [Total Orders],
+    "Previous Period Orders", [Previous Period Orders],
+    "Order Growth %", [Order Growth %]
+)
+ORDER BY
+    'gold dim_date'[year],
+    'gold dim_date'[month]
+
+
+// Create a summary table. Group the data by Year and Month. For each month, calculate the current month's Total Customers and the Previous Period Customers. Display both values side by side so we can compare customer counts between consecutive months.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    'gold dim_date'[month],
+    'gold dim_date'[month_name],
+    "Customers", [Total Customers],
+    "Previous Period Customers", [Previous Period Customers]
+)
+ORDER BY
+    'gold dim_date'[year],
+    'gold dim_date'[month]
+
+
+// Create a summary table. Group the data by Year and Month. For each month, calculate the current month's Total Customers, the Previous Period Customers, and the Customer Growth Percentage. Display all three values together so we can determine whether the business is gaining or losing customers over time.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    'gold dim_date'[month],
+    'gold dim_date'[month_name],
+    "Customers", [Total Customers],
+    "Previous Period Customers", [Previous Period Customers],
+    "Customer Growth %", [Customer Growth %]
+)
+ORDER BY
+    'gold dim_date'[year],
+    'gold dim_date'[month]
+
+
+// Create a summary table. Group the data by Year and Month. For each month, calculate the current month's Total Customers, the Previous Period Customers, and the Customer Growth Percentage. Display all three values together so we can determine whether the business is gaining or losing customers over time.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'gold dim_date'[year],
+    'gold dim_date'[month],
+    'gold dim_date'[month_name],
+    "Customers", [Total Customers],
+    "Previous Period Customers", [Previous Period Customers],
+    "Customer Growth %", [Customer Growth %]
+)
+ORDER BY
+    'gold dim_date'[year],
+    'gold dim_date'[month]
+
+
+EVALUATE
+ROW(
+    "Orders per Customer",
+    [Orders per Customer]
+)
+
+EVALUATE
+ROW(
+    "Revenue per Customer",
+    [Revenue per Customer]
+)

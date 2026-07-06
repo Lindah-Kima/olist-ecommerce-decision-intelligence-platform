@@ -157,15 +157,13 @@ table 'gold fact_order_items'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column review_score
-		dataType: double
-		lineageTag: c48dd944-3d8d-4d80-b6b3-96bb0dd968e1
-		summarizeBy: sum
-		sourceColumn: review_score
+	column customer_unique_id
+		dataType: string
+		lineageTag: b0c4a6bd-d351-427f-acf3-5dbb5115a541
+		summarizeBy: none
+		sourceColumn: customer_unique_id
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	partition 'gold fact_order_items' = m
 		mode: import

@@ -52,3 +52,5 @@ table 'gold dim_customers'
 
 	annotation PBI_ResultType = Table
 
+	annotation PBI_NavigationStepName = Navigation
+

@@ -72,4 +72,26 @@ SELECT
     END AS weekend_status
 FROM generate_series('2016-01-01'::DATE, '2018-12-31'::DATE, '1 day'::INTERVAL) AS datum;
 
+DROP TABLE IF EXISTS gold.dim_date;
 
+CREATE TABLE gold.dim_date AS
+SELECT
+    datum::DATE AS date_id,
+    EXTRACT(YEAR FROM datum)::INT AS year,
+    EXTRACT(QUARTER FROM datum)::INT AS quarter,
+    EXTRACT(MONTH FROM datum)::INT AS month,
+    TRIM(TO_CHAR(datum, 'Month')) AS month_name,
+    TO_CHAR(datum, 'Mon') AS month_short_name,
+    TO_CHAR(datum, 'YYYY-MM') AS year_month,
+    EXTRACT(DAY FROM datum)::INT AS day,
+    EXTRACT(ISODOW FROM datum)::INT AS day_of_week,
+    CASE
+        WHEN EXTRACT(ISODOW FROM datum) IN (6, 7)
+            THEN 'Weekend'
+        ELSE 'Weekday'
+    END AS weekend_status
+FROM generate_series(
+    '2016-01-01'::DATE,
+    '2018-12-31'::DATE,
+    '1 day'::INTERVAL
+) AS datum;

@@ -75,6 +75,22 @@ table 'gold dim_date'
 
 		annotation SummarizationSetBy = Automatic
 
+	column month_short_name
+		dataType: string
+		lineageTag: fcc3b167-697e-4c46-a4d4-f7d61c19e9d2
+		summarizeBy: none
+		sourceColumn: month_short_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: 6f229d5f-6838-496f-9f6d-66260469b232
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'gold dim_date' = m
 		mode: import
 		source =
@@ -85,4 +101,6 @@ table 'gold dim_date'
 					gold_dim_date
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 
