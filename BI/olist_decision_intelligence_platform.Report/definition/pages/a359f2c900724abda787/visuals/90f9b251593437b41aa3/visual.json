@@ -4,10 +4,10 @@
   "position": {
     "x": 688,
     "y": 32,
-    "z": 1501,
+    "z": 2000,
     "height": 64,
     "width": 160,
-    "tabOrder": 1001
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "shape",
@@ -113,6 +113,26 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F766E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ]

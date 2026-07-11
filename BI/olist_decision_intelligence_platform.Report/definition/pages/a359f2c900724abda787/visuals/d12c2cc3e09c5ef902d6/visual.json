@@ -1,12 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "bf885d1e8a5bc3507551",
+  "name": "d12c2cc3e09c5ef902d6",
   "position": {
-    "x": 16,
-    "y": 288,
-    "z": 1508,
-    "height": 128,
-    "width": 192
+    "x": 379.95124088895466,
+    "y": 156.48607927764721,
+    "z": 8000,
+    "height": 96,
+    "width": 160,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -22,11 +23,12 @@
                       "Entity": "Executive_KPIs"
                     }
                   },
-                  "Property": "Revenue Growth %"
+                  "Property": "Total Orders"
                 }
               },
-              "queryRef": "Executive_KPIs.Revenue Growth %",
-              "nativeQueryRef": "Revenue Growth %"
+              "queryRef": "Executive_KPIs.Total Orders",
+              "nativeQueryRef": "Total Orders",
+              "format": "0.00"
             }
           ]
         }
@@ -41,7 +43,7 @@
                     "Entity": "Executive_KPIs"
                   }
                 },
-                "Property": "Revenue Growth %"
+                "Property": "Total Orders"
               }
             },
             "direction": "Descending"
@@ -49,6 +51,21 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }
