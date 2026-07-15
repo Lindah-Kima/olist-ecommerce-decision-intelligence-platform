@@ -91,6 +91,21 @@ table 'gold dim_date'
 
 		annotation SummarizationSetBy = Automatic
 
+	hierarchy 'year Hierarchy'
+		lineageTag: 163d2d74-cb16-4471-a426-2ebcb7973e69
+
+		level year
+			lineageTag: a793aff1-d397-4b9b-8e32-c2e31428b216
+			column: year
+
+		level quarter
+			lineageTag: 981afca4-e8d5-47fd-97f9-0aa34fdc6dfa
+			column: quarter
+
+		level month_name
+			lineageTag: f0fd34f7-b20c-42b3-9775-f6d5cae45939
+			column: month_name
+
 	partition 'gold dim_date' = m
 		mode: import
 		source =

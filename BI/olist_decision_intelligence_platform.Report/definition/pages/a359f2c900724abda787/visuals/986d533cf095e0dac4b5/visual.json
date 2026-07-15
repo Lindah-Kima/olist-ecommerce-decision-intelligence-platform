@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "d12c2cc3e09c5ef902d6",
+  "name": "986d533cf095e0dac4b5",
   "position": {
-    "x": 271.95057253194818,
-    "y": 146.65134099616859,
-    "z": 5000,
-    "height": 128.73563218390805,
-    "width": 226.20689655172416,
-    "tabOrder": 3000
+    "x": 1035.4022988505749,
+    "y": 143.44827586206898,
+    "z": 13504,
+    "height": 136.09195402298852,
+    "width": 231.72413793103451,
+    "tabOrder": 13003
   },
   "visual": {
     "visualType": "cardVisual",
@@ -17,18 +17,23 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "Executive_KPIs"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "gold dim_customers"
+                        }
+                      },
+                      "Property": "state"
                     }
                   },
-                  "Property": "Total Orders"
+                  "Function": 2
                 }
               },
-              "queryRef": "Executive_KPIs.Total Orders",
-              "nativeQueryRef": "Total Orders",
-              "format": "0.00"
+              "queryRef": "Min(gold dim_customers.state)",
+              "nativeQueryRef": "States Reached",
+              "displayName": "States Reached"
             }
           ]
         }
@@ -37,13 +42,18 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "Executive_KPIs"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "gold dim_customers"
+                      }
+                    },
+                    "Property": "state"
                   }
                 },
-                "Property": "Total Orders"
+                "Function": 2
               }
             },
             "direction": "Descending"
@@ -56,6 +66,13 @@
       "label": [
         {
           "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -67,24 +84,10 @@
                 }
               }
             },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "fontSize": {
               "expr": {
                 "Literal": {
                   "Value": "16D"
-                }
-              }
-            },
-            "textWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -97,6 +100,19 @@
     },
     "visualContainerObjects": {
       "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
         {
           "properties": {
             "show": {

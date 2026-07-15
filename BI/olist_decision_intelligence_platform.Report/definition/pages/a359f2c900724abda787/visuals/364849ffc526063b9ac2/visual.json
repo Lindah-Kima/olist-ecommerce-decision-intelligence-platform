@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "364849ffc526063b9ac2",
   "position": {
-    "x": 16,
-    "y": 304,
-    "z": 5000,
-    "height": 256,
-    "width": 479.99999999999994,
-    "tabOrder": 4000
+    "x": 20.229885057471265,
+    "y": 310.80459770114948,
+    "z": 3000,
+    "height": 217.01149425287358,
+    "width": 399.080459770115,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -52,8 +52,8 @@
                 }
               },
               "queryRef": "CountNonNull(gold dim_customers.customer_unique_id)",
-              "nativeQueryRef": "Customer Count",
-              "displayName": "Customer Count"
+              "nativeQueryRef": "Number of Customers",
+              "displayName": "Number of Customers"
             }
           ]
         }
@@ -251,6 +251,13 @@
                   "Value": "'center'"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
             }
           }
         }
@@ -261,7 +268,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -318,6 +325,64 @@
               "expr": {
                 "Literal": {
                   "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "customizeSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "spaceBelowTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "spaceBelowTitleArea": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F766E'"
+                    }
+                  }
+                }
+              }
+            },
+            "ignorePadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
