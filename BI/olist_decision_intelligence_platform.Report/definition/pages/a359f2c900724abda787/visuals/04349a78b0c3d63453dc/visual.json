@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "04349a78b0c3d63453dc",
   "position": {
-    "x": 779.77011494252883,
-    "y": 143.44827586206898,
-    "z": 13502,
-    "height": 136.09195402298852,
-    "width": 226.20689655172416,
-    "tabOrder": 13001
+    "x": 788.37988826815649,
+    "y": 157.31843575418995,
+    "z": 5000,
+    "height": 109.05027932960894,
+    "width": 225.2513966480447,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,12 +23,12 @@
                       "Entity": "Executive_KPIs"
                     }
                   },
-                  "Property": "Average Order Value"
+                  "Property": "Avg Order Value"
                 }
               },
               "queryRef": "Executive_KPIs.Average Order Value",
               "nativeQueryRef": "Average Order Value",
-              "format": "0.00"
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             }
           ]
         }
@@ -43,7 +43,7 @@
                     "Entity": "Executive_KPIs"
                   }
                 },
-                "Property": "Average Order Value"
+                "Property": "Avg Order Value"
               }
             },
             "direction": "Descending"

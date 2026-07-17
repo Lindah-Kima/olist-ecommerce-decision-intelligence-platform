@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "364849ffc526063b9ac2",
+  "name": "e3497a6fe669908a0284",
   "position": {
-    "x": 14.301675977653632,
-    "y": 511.28491620111737,
-    "z": 1000,
+    "x": 439.7765363128492,
+    "y": 513.072625698324,
+    "z": 9000,
     "height": 200.22346368715085,
-    "width": 407.59776536312853,
-    "tabOrder": 0
+    "width": 402.23463687150843,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -20,16 +20,16 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "gold dim_customers"
+                      "Entity": "gold dim_products"
                     }
                   },
-                  "Property": "state"
+                  "Property": "category_en"
                 }
               },
-              "queryRef": "gold dim_customers.state",
-              "nativeQueryRef": "State",
+              "queryRef": "gold dim_products.category_en",
+              "nativeQueryRef": "product category",
               "active": true,
-              "displayName": "State"
+              "displayName": "product category"
             }
           ]
         },
@@ -37,23 +37,18 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "gold dim_customers"
-                        }
-                      },
-                      "Property": "customer_unique_id"
+                    "SourceRef": {
+                      "Entity": "Executive_KPIs"
                     }
                   },
-                  "Function": 5
+                  "Property": "Total Orders"
                 }
               },
-              "queryRef": "CountNonNull(gold dim_customers.customer_unique_id)",
-              "nativeQueryRef": "Number of Customers",
-              "displayName": "Number of Customers"
+              "queryRef": "Executive_KPIs.Total Orders",
+              "nativeQueryRef": "total orders",
+              "displayName": "total orders"
             }
           ]
         }
@@ -62,18 +57,13 @@
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Measure": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "gold dim_customers"
-                      }
-                    },
-                    "Property": "customer_unique_id"
+                  "SourceRef": {
+                    "Entity": "Executive_KPIs"
                   }
                 },
-                "Function": 5
+                "Property": "Total Orders"
               }
             },
             "direction": "Descending"
@@ -227,7 +217,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'TOP 5 STATES FOR OUR CUSTOMERS'"
+                  "Value": "'TOP 5 PRODUCT CATEGORIES BY ORDERS'"
                 }
               }
             },
@@ -395,15 +385,15 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "035ea77371cbdf66a2fa",
+        "name": "8df92654ca8bc3cc23c2",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "gold dim_customers"
+                "Entity": "gold dim_products"
               }
             },
-            "Property": "state"
+            "Property": "category_en"
           }
         },
         "type": "TopN",
@@ -418,8 +408,13 @@
                     "Version": 2,
                     "From": [
                       {
-                        "Name": "g",
-                        "Entity": "gold dim_customers",
+                        "Name": "g1",
+                        "Entity": "gold dim_products",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "e",
+                        "Entity": "Executive_KPIs",
                         "Type": 0
                       }
                     ],
@@ -428,10 +423,10 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Source": "g"
+                              "Source": "g1"
                             }
                           },
-                          "Property": "state"
+                          "Property": "category_en"
                         },
                         "Name": "field"
                       }
@@ -440,18 +435,13 @@
                       {
                         "Direction": 2,
                         "Expression": {
-                          "Aggregation": {
+                          "Measure": {
                             "Expression": {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "g"
-                                  }
-                                },
-                                "Property": "customer_unique_id"
+                              "SourceRef": {
+                                "Source": "e"
                               }
                             },
-                            "Function": 5
+                            "Property": "Total Orders"
                           }
                         }
                       }
@@ -463,8 +453,8 @@
               "Type": 2
             },
             {
-              "Name": "g",
-              "Entity": "gold dim_customers",
+              "Name": "g1",
+              "Entity": "gold dim_products",
               "Type": 0
             }
           ],
@@ -477,10 +467,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Source": "g"
+                            "Source": "g1"
                           }
                         },
-                        "Property": "state"
+                        "Property": "category_en"
                       }
                     }
                   ],

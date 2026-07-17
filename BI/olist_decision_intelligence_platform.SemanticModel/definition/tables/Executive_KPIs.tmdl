@@ -3,9 +3,10 @@ table Executive_KPIs
 
 	measure 'Total Revenue' =
 			
-			SUM('gold fact_order_payments'[payment_value])
-			// How much revenue has the business generated?
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+			SUM('gold fact_order_items'[price])
+			+
+			SUM('gold fact_order_items'[freight_val])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: f62c2c39-4810-443a-ba64-2393ff8c3b2e
 
 	measure 'Total Orders' =
@@ -24,7 +25,7 @@ table Executive_KPIs
 		formatString: 0
 		lineageTag: 1b47540c-3c87-4726-8d74-c9b82f0338a6
 
-	measure 'Average Order Value' =
+	measure 'Avg Order Value' =
 			
 			DIVIDE(
 			    [Total Revenue],
@@ -34,8 +35,10 @@ table Executive_KPIs
 			
 			// On average, how much does each order contribute to revenue?
 			// Create a measure called Average Order Value. Divide Total Revenue by Total Orders. If there are no orders, return 0 instead of an error.
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 42407431-b09c-45de-96cb-be4034f4fe0c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Previous Period Revenue' =
 			
@@ -186,6 +189,11 @@ table Executive_KPIs
 		lineageTag: e971a728-b754-4889-a09e-5fbeabdc8397
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total GMV' =
+			SUM('gold fct_order_items'[price])
+			// How much product value was generated, filterable by category?
+		lineageTag: cb3cddc2-4e09-4558-a451-6c7b34233f9a
 
 	column Value
 		formatString: 0

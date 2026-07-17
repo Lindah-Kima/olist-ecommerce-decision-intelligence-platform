@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "e33d46b5583a1c4e022c",
+  "name": "a6d06f5b430c996ee293",
   "position": {
-    "x": 14.301675977653632,
-    "y": 294.97206703910615,
-    "z": 7000,
-    "height": 205.58659217877096,
-    "width": 407.59776536312853,
-    "tabOrder": 6000
+    "x": 443.35195530726259,
+    "y": 300.33519553072625,
+    "z": 8000,
+    "height": 202.01117318435755,
+    "width": 398.659217877095,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "lineChart",
@@ -17,63 +17,18 @@
           "projections": [
             {
               "field": {
-                "HierarchyLevel": {
+                "Column": {
                   "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "gold dim_date"
-                        }
-                      },
-                      "Hierarchy": "year Hierarchy"
+                    "SourceRef": {
+                      "Entity": "gold dim_date"
                     }
                   },
-                  "Level": "year"
+                  "Property": "day_name"
                 }
               },
-              "queryRef": "gold dim_date.year Hierarchy.year",
-              "nativeQueryRef": "year Hierarchy year",
+              "queryRef": "gold dim_date.day_name",
+              "nativeQueryRef": "day_name",
               "active": true
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "gold dim_date"
-                        }
-                      },
-                      "Hierarchy": "year Hierarchy"
-                    }
-                  },
-                  "Level": "quarter"
-                }
-              },
-              "queryRef": "gold dim_date.year Hierarchy.quarter",
-              "nativeQueryRef": "year Hierarchy quarter",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "gold dim_date"
-                        }
-                      },
-                      "Hierarchy": "year Hierarchy"
-                    }
-                  },
-                  "Level": "month_name"
-                }
-              },
-              "queryRef": "gold dim_date.year Hierarchy.month_name",
-              "nativeQueryRef": "year Hierarchy month_name",
-              "active": false
             }
           ]
         },
@@ -86,44 +41,21 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "gold fact_order_payments"
+                          "Entity": "gold fact_order_items"
                         }
                       },
-                      "Property": "payment_value"
+                      "Property": "order_id"
                     }
                   },
-                  "Function": 0
+                  "Function": 5
                 }
               },
-              "queryRef": "Sum(gold fact_order_payments.payment_value)",
-              "nativeQueryRef": "Revenue",
-              "displayName": "Revenue"
+              "queryRef": "CountNonNull(gold fact_order_items.order_id)",
+              "nativeQueryRef": "No. of Orders Placed",
+              "displayName": "No. of Orders Placed"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Aggregation": {
-                "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "gold fact_order_payments"
-                      }
-                    },
-                    "Property": "payment_value"
-                  }
-                },
-                "Function": 0
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
@@ -277,7 +209,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'REVENUE TREND'"
+                  "Value": "'ORDERS BY WEEK DAY'"
                 }
               }
             },

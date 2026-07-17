@@ -91,6 +91,17 @@ table 'gold dim_date'
 
 		annotation SummarizationSetBy = Automatic
 
+	column day_name
+		dataType: string
+		lineageTag: 02dfd9e0-f4c7-4949-90cc-51483e51054d
+		summarizeBy: none
+		sourceColumn: day_name
+		sortByColumn: day_of_week
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
 	hierarchy 'year Hierarchy'
 		lineageTag: 163d2d74-cb16-4471-a426-2ebcb7973e69
 
@@ -111,9 +122,11 @@ table 'gold dim_date'
 		source =
 				let
 					Source = PostgreSQL.Database("pg-2125de06-lindah-2028.i.aivencloud.com:13669", "defaultdb"),
-					gold_dim_date = Source{[Schema = "gold", Item = "dim_date"]}[Data]
+					gold_dim_date = Source{[Schema = "gold", Item = "dim_date"]}[Data],
+				    #"Added Conditional Column" = Table.AddColumn(gold_dim_date, "Custom", each if [day_of_week] = 1 then "Monday" else if [day_of_week] = 2 then "Tuesday" else if [day_of_week] = 3 then "Wednesday" else if [day_of_week] = 4 then "Thursday" else if [day_of_week] = 5 then "Friday" else if [day_of_week] = 6 then "Saturday" else "Sunday"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Conditional Column",{{"Custom", "day_name"}})
 				in
-					gold_dim_date
+				    #"Renamed Columns"
 
 	annotation PBI_ResultType = Table
 

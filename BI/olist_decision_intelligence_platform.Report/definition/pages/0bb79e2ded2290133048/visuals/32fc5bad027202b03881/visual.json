@@ -1,35 +1,59 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "35bcff16e9b11c2a64d6",
+  "name": "32fc5bad027202b03881",
   "position": {
-    "x": 517.88505747126442,
-    "y": 14.712643678160919,
-    "z": 10000,
-    "height": 116.22988505747126,
-    "width": 258.94252873563221,
-    "tabOrder": 9000
+    "x": 461.57676348547722,
+    "y": 294.27385892116183,
+    "z": 0,
+    "height": 204.64730290456433,
+    "width": 398.83817427385895,
+    "tabOrder": 0
   },
   "visual": {
-    "visualType": "slicer",
+    "visualType": "pieChart",
     "query": {
       "queryState": {
-        "Values": {
+        "Category": {
           "projections": [
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "gold dim_date"
+                      "Entity": "gold fact_order_payments"
                     }
                   },
-                  "Property": "date_id"
+                  "Property": "payment_type"
                 }
               },
-              "queryRef": "gold dim_date.date_id",
-              "nativeQueryRef": "date_id",
+              "queryRef": "gold fact_order_payments.payment_type",
+              "nativeQueryRef": "Payment Method: ",
               "active": true,
-              "format": "d"
+              "displayName": "Payment Method: "
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "gold fact_order_payments"
+                        }
+                      },
+                      "Property": "payment_type"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(gold fact_order_payments.payment_type)",
+              "nativeQueryRef": "Payments Made: ",
+              "displayName": "Payments Made: "
             }
           ]
         }
@@ -38,129 +62,82 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "gold dim_date"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "gold fact_order_payments"
+                      }
+                    },
+                    "Property": "payment_type"
                   }
                 },
-                "Property": "date_id"
+                "Function": 5
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ],
         "isDefaultSort": true
       }
     },
     "objects": {
-      "general": [
+      "labels": [
         {
           "properties": {
-            "outlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0F766E'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "data": [
-        {
-          "properties": {
-            "mode": {
+            "position": {
               "expr": {
                 "Literal": {
-                  "Value": "'Between'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "header": [
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'YEAR'"
+                  "Value": "'outside'"
                 }
               }
             },
-            "show": {
+            "overflow": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
-            }
-          }
-        }
-      ],
-      "selection": [
-        {
-          "properties": {
-            "selectAllCheckboxEnabled": {
+            },
+            "labelStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "'Category, percent of total'"
                 }
               }
-            }
-          }
-        }
-      ],
-      "items": [
-        {
-          "properties": {
-            "outlineStyle": {
+            },
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "10D"
                 }
               }
-            }
-          }
-        }
-      ],
-      "selectionIcon": [
-        {
-          "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0F766E'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "date": [
-        {
-          "properties": {
+            },
             "bold": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
-            },
-            "textSize": {
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "false"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -172,17 +149,17 @@
       "title": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'DATE'"
+                  "Value": "'PAYMENT METHOD'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -193,17 +170,24 @@
                 }
               }
             },
-            "fontFamily": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                  "Value": "14D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
                 }
               }
             }
           }
         }
       ],
-      "border": [
+      "divider": [
         {
           "properties": {
             "show": {
@@ -224,10 +208,44 @@
                 }
               }
             },
-            "radius": {
+            "style": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "'dashed'"
+                }
+              }
+            },
+            "ignorePadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "customizeSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "spaceBelowTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "spaceBelowTitleArea": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }
@@ -255,52 +273,17 @@
                 }
               }
             },
-            "preset": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Center'"
-                }
-              }
-            },
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
-                }
-              }
-            },
-            "shadowDistance": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
-                }
-              }
-            },
-            "shadowBlur": {
-              "expr": {
-                "Literal": {
-                  "Value": "15L"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "3L"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "70L"
-                }
-              }
-            },
             "position": {
               "expr": {
                 "Literal": {
                   "Value": "'Inner'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
                 }
               }
             }
