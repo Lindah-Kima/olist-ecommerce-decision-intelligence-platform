@@ -1,173 +1,132 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "a6d06f5b430c996ee293",
+  "name": "fe62f2efd5419a4021a3",
   "position": {
-    "x": 443.35195530726259,
-    "y": 300.33519553072625,
-    "z": 15500,
-    "height": 202.01117318435755,
-    "width": 398.659217877095,
-    "tabOrder": 7000
+    "x": 747.26256983240228,
+    "y": 33.966480446927378,
+    "z": 14000,
+    "height": 89.385474860335208,
+    "width": 191.28491620111734,
+    "tabOrder": 14000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "slicer",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
-                "Column": {
+                "HierarchyLevel": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "gold dim_date"
-                    }
-                  },
-                  "Property": "day_name"
-                }
-              },
-              "queryRef": "gold dim_date.day_name",
-              "nativeQueryRef": "day_name",
-              "active": true
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
+                    "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "gold fact_order_items"
+                          "Entity": "gold dim_date"
                         }
                       },
-                      "Property": "order_id"
+                      "Hierarchy": "year Hierarchy"
                     }
                   },
-                  "Function": 5
+                  "Level": "year"
                 }
               },
-              "queryRef": "CountNonNull(gold fact_order_items.order_id)",
-              "nativeQueryRef": "No. of Orders Placed",
-              "displayName": "No. of Orders Placed"
+              "queryRef": "gold dim_date.year Hierarchy.year",
+              "nativeQueryRef": "year Hierarchy year",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "gold dim_date"
+                        }
+                      },
+                      "Hierarchy": "year Hierarchy"
+                    }
+                  },
+                  "Level": "quarter"
+                }
+              },
+              "queryRef": "gold dim_date.year Hierarchy.quarter",
+              "nativeQueryRef": "year Hierarchy quarter",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "gold dim_date"
+                        }
+                      },
+                      "Hierarchy": "year Hierarchy"
+                    }
+                  },
+                  "Level": "month_name"
+                }
+              },
+              "queryRef": "gold dim_date.year Hierarchy.month_name",
+              "nativeQueryRef": "year Hierarchy month_name",
+              "active": false
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
       }
     },
     "objects": {
-      "categoryAxis": [
+      "general": [
         {
           "properties": {
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F766E'"
+                    }
+                  }
                 }
               }
             }
           }
         }
       ],
-      "labels": [
+      "data": [
         {
           "properties": {
-            "show": {
+            "endDate": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "datetime'2018-12-31T00:00:00'"
                 }
               }
             },
-            "fontSize": {
+            "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "labelPosition": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Above'"
+                  "Value": "'Dropdown'"
                 }
               }
             }
           }
         }
       ],
-      "lineStyles": [
+      "header": [
         {
           "properties": {
-            "strokeLineJoin": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'bevel'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "titleFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "titleFontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "titleBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "'YEAR'"
                 }
               }
             },
@@ -177,24 +136,67 @@
                   "Value": "false"
                 }
               }
-            },
-            "showAxisTitle": {
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "selectAllCheckboxEnabled": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
           }
         }
       ],
-      "seriesLabels": [
+      "items": [
         {
           "properties": {
-            "show": {
+            "outlineStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selectionIcon": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F766E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "date": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
                 }
               }
             }
@@ -206,10 +208,17 @@
       "title": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'ORDERS BY WEEK DAY'"
+                  "Value": "'PERIOD'"
                 }
               }
             },
@@ -226,20 +235,6 @@
                   "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'center'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "14D"
-                }
-              }
             }
           }
         }
@@ -250,7 +245,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -262,6 +257,13 @@
                       "Value": "'#0F766E'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
                 }
               }
             }
@@ -289,82 +291,52 @@
                 }
               }
             },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Inner'"
-                }
-              }
-            },
             "preset": {
               "expr": {
                 "Literal": {
                   "Value": "'Center'"
                 }
               }
-            }
-          }
-        }
-      ],
-      "divider": [
-        {
-          "properties": {
-            "show": {
+            },
+            "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "0L"
                 }
               }
             },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0F766E'"
-                    }
-                  }
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
                 }
               }
             },
-            "style": {
+            "shadowBlur": {
               "expr": {
                 "Literal": {
-                  "Value": "'dashed'"
+                  "Value": "15L"
                 }
               }
             },
-            "ignorePadding": {
+            "shadowSpread": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "spacing": [
-        {
-          "properties": {
-            "customizeSpacing": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "3L"
                 }
               }
             },
-            "spaceBelowTitle": {
+            "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "70L"
                 }
               }
             },
-            "spaceBelowTitleArea": {
+            "position": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "'Inner'"
                 }
               }
             }

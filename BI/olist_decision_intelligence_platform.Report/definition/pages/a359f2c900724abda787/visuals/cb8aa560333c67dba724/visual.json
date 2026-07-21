@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "95dce03ccba8862dd9ee",
+  "name": "cb8aa560333c67dba724",
   "position": {
-    "x": 518.43575418994419,
-    "y": 14.301675977653632,
-    "z": 1000,
-    "height": 116.20111731843576,
-    "width": 259.2178770949721,
-    "tabOrder": 1000
+    "x": 514.86033519553075,
+    "y": 33.966480446927378,
+    "z": 13000,
+    "height": 89.385474860335208,
+    "width": 218.10055865921788,
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,36 +20,20 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "gold dim_date"
+                      "Entity": "gold dim_products"
                     }
                   },
-                  "Property": "date_id"
+                  "Property": "category_en"
                 }
               },
-              "queryRef": "gold dim_date.date_id",
-              "nativeQueryRef": "date_id",
-              "active": true,
-              "format": "d"
+              "queryRef": "gold dim_products.category_en",
+              "nativeQueryRef": "category_en",
+              "active": true
             }
           ]
         }
       },
       "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "gold dim_date"
-                  }
-                },
-                "Property": "date_id"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ],
         "isDefaultSort": true
       }
     },
@@ -66,42 +50,6 @@
                     }
                   }
                 }
-              }
-            },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "g",
-                    "Entity": "gold dim_date",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "Comparison": {
-                        "ComparisonKind": 3,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "g"
-                              }
-                            },
-                            "Property": "date_id"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "datetime'2019-01-01T00:00:00'"
-                          }
-                        }
-                      }
-                    }
-                  }
-                ]
               }
             }
           }
@@ -120,7 +68,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Between'"
+                  "Value": "'Dropdown'"
                 }
               }
             }
@@ -225,7 +173,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'DATE'"
+                  "Value": "'PRODUCT CATEGORY'"
                 }
               }
             },
