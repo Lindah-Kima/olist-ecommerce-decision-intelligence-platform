@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "9733394e8e397dc17ed0",
   "position": {
-    "x": 865.25139664804476,
-    "y": 291.39664804469277,
+    "x": 871.16182572614116,
+    "y": 327.66652501068052,
     "z": 16500,
-    "height": 421.89944134078218,
-    "width": 405.81005586592181,
+    "height": 248.65145228215769,
+    "width": 415,
     "tabOrder": 9000
   },
   "visual": {
@@ -216,7 +216,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'TOP 5 PRODUCT CATEGORIES BY REVENUE'"
+                  "Value": "'Top 5 Product Categories by Revenue'"
                 }
               }
             },
@@ -244,7 +244,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "16D"
                 }
               }
             }
@@ -372,6 +372,39 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "sentenceTemplate": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Where is revenue coming from?'"
+                }
+              }
+            },
+            "showTooltipFieldsOnly": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'How is the business performing?\n'"
                 }
               }
             }

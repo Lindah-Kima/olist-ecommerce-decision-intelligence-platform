@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "fe62f2efd5419a4021a3",
+  "name": "89c1ea50bd6768244442",
   "position": {
-    "x": 747.26256983240228,
-    "y": 33.966480446927378,
-    "z": 14000,
+    "x": 747.75493173230723,
+    "y": 135.42856093979975,
+    "z": 5000,
     "height": 89.385474860335208,
     "width": 191.28491620111734,
-    "tabOrder": 14000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "slicer",
@@ -218,7 +218,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'PERIOD'"
+                  "Value": "'Period'"
                 }
               }
             },

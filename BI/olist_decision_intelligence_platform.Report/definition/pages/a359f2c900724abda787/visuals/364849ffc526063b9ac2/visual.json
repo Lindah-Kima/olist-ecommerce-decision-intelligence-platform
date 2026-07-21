@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "364849ffc526063b9ac2",
   "position": {
-    "x": 14.301675977653632,
-    "y": 511.28491620111737,
+    "x": 14.107883817427387,
+    "y": 589.00414937759342,
     "z": 14500,
-    "height": 200.22346368715085,
-    "width": 407.59776536312853,
+    "height": 248.65145228215769,
+    "width": 415,
     "tabOrder": 0
   },
   "visual": {
@@ -227,7 +227,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'TOP 5 STATES FOR OUR CUSTOMERS'"
+                  "Value": "'Top 5 Customer States'"
                 }
               }
             },
@@ -255,7 +255,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "16D"
                 }
               }
             }
@@ -383,6 +383,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "sentenceTemplate": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Where are our customers?'"
                 }
               }
             }

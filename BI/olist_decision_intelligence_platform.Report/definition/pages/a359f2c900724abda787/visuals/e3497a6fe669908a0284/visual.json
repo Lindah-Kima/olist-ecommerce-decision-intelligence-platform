@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "e3497a6fe669908a0284",
   "position": {
-    "x": 439.7765363128492,
-    "y": 513.072625698324,
+    "x": 442.63485477178426,
+    "y": 589.00414937759342,
     "z": 16000,
-    "height": 200.22346368715085,
-    "width": 402.23463687150843,
+    "height": 248.65145228215769,
+    "width": 414.41908713692948,
     "tabOrder": 8000
   },
   "visual": {
@@ -217,7 +217,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'TOP 5 PRODUCT CATEGORIES BY ORDERS'"
+                  "Value": "'Top 5 Product Categories by Orders'"
                 }
               }
             },
@@ -245,7 +245,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "16D"
                 }
               }
             }
@@ -373,6 +373,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "sentenceTemplate": {
+              "expr": {
+                "Literal": {
+                  "Value": "'What products drive demand?'"
                 }
               }
             }

@@ -9396,39 +9396,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "gold_fact_order_payment_has_executive_KP_is_revenue_per_customer": {
-			      "Binding": {
-			        "ConceptualEntity": "gold fact_order_payments"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "gold_fact_order_payment": {
-			          "Target": {
-			            "Entity": "gold_fact_order_payment"
-			          }
-			        },
-			        "executive_KP_is.revenue_per_customer": {
-			          "Target": {
-			            "Entity": "executive_KP_is.revenue_per_customer"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "gold_fact_order_payment"
-			            },
-			            "Object": {
-			              "Role": "executive_KP_is.revenue_per_customer"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "gold_fact_order_payments_have_revenue_per_customer"
-			        }
-			      ]
-			    },
 			    "gold_fact_order_item_has_executive_KP_is_revenue_per_customer": {
 			      "Binding": {
 			        "ConceptualEntity": "gold fact_order_items"
@@ -9462,15 +9429,15 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "gold_fact_order_payment_has_executive_KP_is_category_revenue_rank": {
+			    "gold_fact_order_item_has_executive_KP_is_category_revenue_rank": {
 			      "Binding": {
-			        "ConceptualEntity": "gold fact_order_payments"
+			        "ConceptualEntity": "gold fact_order_items"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "gold_fact_order_payment": {
+			        "gold_fact_order_item": {
 			          "Target": {
-			            "Entity": "gold_fact_order_payment"
+			            "Entity": "gold_fact_order_item"
 			          }
 			        },
 			        "executive_KP_is.category_revenue_rank": {
@@ -9483,7 +9450,7 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "gold_fact_order_payment"
+			              "Role": "gold_fact_order_item"
 			            },
 			            "Object": {
 			              "Role": "executive_KP_is.category_revenue_rank"
@@ -9491,19 +9458,19 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "gold_fact_order_payments_have_category_revenue_rank"
+			          "ID": "gold_fact_order_items_have_category_revenue_rank"
 			        }
 			      ]
 			    },
-			    "gold_fact_order_payment_has_executive_KP_is_revenue_contribution_": {
+			    "gold_fact_order_item_has_executive_KP_is_revenue_contribution_": {
 			      "Binding": {
-			        "ConceptualEntity": "gold fact_order_payments"
+			        "ConceptualEntity": "gold fact_order_items"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "gold_fact_order_payment": {
+			        "gold_fact_order_item": {
 			          "Target": {
-			            "Entity": "gold_fact_order_payment"
+			            "Entity": "gold_fact_order_item"
 			          }
 			        },
 			        "executive_KP_is.revenue_contribution_": {
@@ -9516,7 +9483,7 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "gold_fact_order_payment"
+			              "Role": "gold_fact_order_item"
 			            },
 			            "Object": {
 			              "Role": "executive_KP_is.revenue_contribution_"
@@ -9524,7 +9491,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "gold_fact_order_payments_have_revenue_contribution_"
+			          "ID": "gold_fact_order_items_have_revenue_contribution_"
 			        }
 			      ]
 			    },
@@ -9594,15 +9561,15 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "gold_fact_order_payment_has_executive_KP_is_revenue_growth_": {
+			    "gold_fact_order_item_has_executive_KP_is_revenue_growth_": {
 			      "Binding": {
-			        "ConceptualEntity": "gold fact_order_payments"
+			        "ConceptualEntity": "gold fact_order_items"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "gold_fact_order_payment": {
+			        "gold_fact_order_item": {
 			          "Target": {
-			            "Entity": "gold_fact_order_payment"
+			            "Entity": "gold_fact_order_item"
 			          }
 			        },
 			        "executive_KP_is.revenue_growth_": {
@@ -9615,7 +9582,7 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "gold_fact_order_payment"
+			              "Role": "gold_fact_order_item"
 			            },
 			            "Object": {
 			              "Role": "executive_KP_is.revenue_growth_"
@@ -9623,19 +9590,19 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "gold_fact_order_payments_have_revenue_growth_"
+			          "ID": "gold_fact_order_items_have_revenue_growth_"
 			        }
 			      ]
 			    },
-			    "gold_fact_order_payment_has_executive_KP_is_previous_period_revenue": {
+			    "gold_fact_order_item_has_executive_KP_is_previous_period_revenue": {
 			      "Binding": {
-			        "ConceptualEntity": "gold fact_order_payments"
+			        "ConceptualEntity": "gold fact_order_items"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "gold_fact_order_payment": {
+			        "gold_fact_order_item": {
 			          "Target": {
-			            "Entity": "gold_fact_order_payment"
+			            "Entity": "gold_fact_order_item"
 			          }
 			        },
 			        "executive_KP_is.previous_period_revenue": {
@@ -9648,7 +9615,7 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "gold_fact_order_payment"
+			              "Role": "gold_fact_order_item"
 			            },
 			            "Object": {
 			              "Role": "executive_KP_is.previous_period_revenue"
@@ -9656,40 +9623,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "gold_fact_order_payments_have_previous_period_revenue"
-			        }
-			      ]
-			    },
-			    "gold_fact_order_payment_has_executive_KP_is_avg_order_value": {
-			      "Binding": {
-			        "ConceptualEntity": "gold fact_order_payments"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "gold_fact_order_payment": {
-			          "Target": {
-			            "Entity": "gold_fact_order_payment"
-			          }
-			        },
-			        "executive_KP_is.avg_order_value": {
-			          "Target": {
-			            "Entity": "executive_KP_is.avg_order_value"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "gold_fact_order_payment"
-			            },
-			            "Object": {
-			              "Role": "executive_KP_is.avg_order_value"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "gold_fact_order_payments_have_avg_order_value"
+			          "ID": "gold_fact_order_items_have_previous_period_revenue"
 			        }
 			      ]
 			    },
@@ -9792,15 +9726,15 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "gold_fact_order_payment_has_executive_KP_is_total_revenue": {
+			    "gold_fact_order_item_has_executive_KP_is_total_revenue": {
 			      "Binding": {
-			        "ConceptualEntity": "gold fact_order_payments"
+			        "ConceptualEntity": "gold fact_order_items"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "gold_fact_order_payment": {
+			        "gold_fact_order_item": {
 			          "Target": {
-			            "Entity": "gold_fact_order_payment"
+			            "Entity": "gold_fact_order_item"
 			          }
 			        },
 			        "executive_KP_is.total_revenue": {
@@ -9813,7 +9747,7 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "gold_fact_order_payment"
+			              "Role": "gold_fact_order_item"
 			            },
 			            "Object": {
 			              "Role": "executive_KP_is.total_revenue"
@@ -9821,7 +9755,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "gold_fact_order_payments_have_total_revenue"
+			          "ID": "gold_fact_order_items_have_total_revenue"
 			        }
 			      ]
 			    },

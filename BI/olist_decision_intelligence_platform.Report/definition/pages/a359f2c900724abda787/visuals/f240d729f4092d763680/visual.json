@@ -3,10 +3,10 @@
   "name": "f240d729f4092d763680",
   "position": {
     "x": 0,
-    "y": 25.027932960893857,
+    "y": 1.7634854771784234,
     "z": 12000,
-    "height": 107.26256983240225,
-    "width": 504.13407821229055,
+    "height": 105.8091286307054,
+    "width": 1299.6887966804979,
     "tabOrder": 12000
   },
   "visual": {
@@ -19,7 +19,24 @@
               {
                 "textRuns": [
                   {
-                    "value": ""
+                    "value": "High-level overview of marketplace performance across revenue, customers, products and geographic distribution",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontStyle": "italic",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Reporting Period : September 2016 – October 2018",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "14pt"
+                    }
                   }
                 ],
                 "horizontalTextAlignment": "center"

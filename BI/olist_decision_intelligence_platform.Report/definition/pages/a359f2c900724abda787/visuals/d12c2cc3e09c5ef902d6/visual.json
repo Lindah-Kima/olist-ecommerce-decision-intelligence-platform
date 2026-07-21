@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "d12c2cc3e09c5ef902d6",
   "position": {
-    "x": 268.15642458100558,
-    "y": 151.95530726256985,
+    "x": 271.08011575889725,
+    "y": 183.36426084411653,
     "z": 2000,
     "height": 112.62569832402235,
     "width": 216.31284916201119,
@@ -93,6 +93,22 @@
             "id": "default"
           }
         }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -127,6 +143,19 @@
                       "Value": "'#0F766E'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'How is the business performing?\n'"
                 }
               }
             }

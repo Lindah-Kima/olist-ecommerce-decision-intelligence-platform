@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "a6d06f5b430c996ee293",
   "position": {
-    "x": 443.35195530726259,
-    "y": 300.33519553072625,
+    "x": 440.87136929460581,
+    "y": 327.66652501068052,
     "z": 15500,
-    "height": 202.01117318435755,
-    "width": 398.659217877095,
+    "height": 248.65145228215769,
+    "width": 415,
     "tabOrder": 7000
   },
   "visual": {
@@ -209,7 +209,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'ORDERS BY WEEK DAY'"
+                  "Value": "'Orders by Week Day'"
                 }
               }
             },
@@ -237,7 +237,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "16D"
                 }
               }
             }
@@ -365,6 +365,39 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "sentenceTemplate": {
+              "expr": {
+                "Literal": {
+                  "Value": "'How are custoemrs behaving?'"
+                }
+              }
+            },
+            "showSentenceFormat": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'How is the business performing?\n'"
                 }
               }
             }

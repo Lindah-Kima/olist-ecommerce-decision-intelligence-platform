@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "e33d46b5583a1c4e022c",
   "position": {
-    "x": 14.301675977653632,
-    "y": 294.97206703910615,
+    "x": 10.580912863070541,
+    "y": 327.66652501068052,
     "z": 15000,
-    "height": 205.58659217877096,
-    "width": 407.59776536312853,
+    "height": 248.65145228215769,
+    "width": 415,
     "tabOrder": 6000
   },
   "visual": {
@@ -86,16 +86,16 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "gold fact_order_payments"
+                          "Entity": "gold fact_order_items"
                         }
                       },
-                      "Property": "payment_value"
+                      "Property": "price"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(gold fact_order_payments.payment_value)",
+              "queryRef": "Sum(gold fact_order_items.price)",
               "nativeQueryRef": "Revenue",
               "displayName": "Revenue"
             }
@@ -111,10 +111,10 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "gold fact_order_payments"
+                        "Entity": "gold fact_order_items"
                       }
                     },
-                    "Property": "payment_value"
+                    "Property": "price"
                   }
                 },
                 "Function": 0
@@ -268,6 +268,19 @@
             }
           }
         }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -277,7 +290,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'REVENUE TREND'"
+                  "Value": "'Revenue Trend'"
                 }
               }
             },
@@ -305,7 +318,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "16D"
                 }
               }
             }
@@ -433,6 +446,32 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Is performance improving?'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "sentenceTemplate": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Is performance improving?'"
                 }
               }
             }
